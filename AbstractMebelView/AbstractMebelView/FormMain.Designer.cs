@@ -48,6 +48,8 @@
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Location = new System.Drawing.Point(8, 32);
             this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowHeadersVisible = false;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(624, 275);
             this.dataGridView.TabIndex = 0;
             // 
@@ -73,14 +75,14 @@
             // мебельToolStripMenuItem
             // 
             this.мебельToolStripMenuItem.Name = "мебельToolStripMenuItem";
-            this.мебельToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.мебельToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.мебельToolStripMenuItem.Text = "Мебель";
             this.мебельToolStripMenuItem.Click += new System.EventHandler(this.компонентыToolStripMenuItem_Click);
             // 
             // изделияToolStripMenuItem
             // 
             this.изделияToolStripMenuItem.Name = "изделияToolStripMenuItem";
-            this.изделияToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.изделияToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.изделияToolStripMenuItem.Text = "Изделия";
             this.изделияToolStripMenuItem.Click += new System.EventHandler(this.изделияToolStripMenuItem_Click);
             // 
@@ -110,7 +112,7 @@
             this.buttonOrderReady.Name = "buttonOrderReady";
             this.buttonOrderReady.Size = new System.Drawing.Size(150, 23);
             this.buttonOrderReady.TabIndex = 4;
-            this.buttonOrderReady.Text = "Закоз готов";
+            this.buttonOrderReady.Text = "Заказ готов";
             this.buttonOrderReady.UseVisualStyleBackColor = true;
             this.buttonOrderReady.Click += new System.EventHandler(this.buttonOrderReady_Click);
             // 
@@ -149,7 +151,6 @@
             this.MainMenuStrip = this.menuStrip;
             this.Name = "FormMain";
             this.Text = "Absrtact Shop";
-            this.Click += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();

@@ -1,5 +1,6 @@
 ﻿using AbstractMebelBusinessLogic.BindingModels;
 using AbstractMebelBusinessLogic.Interfaces;
+using AbstractMebelBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +32,14 @@ namespace AbstractMebelView
         {
             try
             {
-                // как же его реализовать…
+                var list = logic.GetOrders();
+                if (list != null)
+                {
+                    dataGridView.DataSource = list;
+                    dataGridView.Columns[0].Visible = false;
+                    dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
             }
             catch (Exception ex)
             {
@@ -46,7 +54,7 @@ namespace AbstractMebelView
         }
         private void изделияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormProduct>();
+            var form = Container.Resolve<FormProducts>();
             form.ShowDialog();
         }
         private void buttonCreateOrder_Click(object sender, EventArgs e)

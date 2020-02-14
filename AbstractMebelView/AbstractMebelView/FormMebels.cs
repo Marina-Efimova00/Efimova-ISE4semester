@@ -22,7 +22,7 @@ namespace AbstractMebelView
             InitializeComponent();
             this.logic = logic;
         }
-        private void FormComponents_Load(object sender, EventArgs e)
+        private void FormMebels_Load(object sender, EventArgs e)
         {
             LoadData();
         }

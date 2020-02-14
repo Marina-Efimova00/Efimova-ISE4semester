@@ -72,7 +72,7 @@
             this.comboBoxProduct.Name = "comboBoxProduct";
             this.comboBoxProduct.Size = new System.Drawing.Size(348, 21);
             this.comboBoxProduct.TabIndex = 3;
-            this.comboBoxProduct.Click += new System.EventHandler(this.comboBoxProduct_SelectedIndexChanged);
+            this.comboBoxProduct.SelectedIndexChanged += new System.EventHandler(this.comboBoxProduct_SelectedIndexChanged);
             // 
             // textBoxCount
             // 
@@ -81,6 +81,7 @@
             this.textBoxCount.Size = new System.Drawing.Size(346, 20);
             this.textBoxCount.TabIndex = 4;
             this.textBoxCount.Click += new System.EventHandler(this.textBoxCount_TextChanged);
+            this.textBoxCount.TextChanged += new System.EventHandler(this.textBoxCount_TextChanged);
             // 
             // textBoxSum
             // 
@@ -124,7 +125,7 @@
             this.Controls.Add(this.labelProduct);
             this.Name = "FormCreateOrder";
             this.Text = "Order";
-            this.Click += new System.EventHandler(this.FormCreateOrder_Load);
+            this.Load += new System.EventHandler(this.FormCreateOrder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

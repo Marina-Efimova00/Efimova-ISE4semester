@@ -25,7 +25,7 @@ namespace AbstractMebelView
             InitializeComponent();
             this.logic = logic;
         }
-        private void FormComponent_Load(object sender, EventArgs e)
+        private void FormMebel_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {

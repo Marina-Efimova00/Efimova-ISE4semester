@@ -110,6 +110,24 @@ namespace AbstractShopListImplement.Implements
         public void PayOrder(OrderBindingModel model)
         {
             // как же его реализовать…
+            int index = -1;
+            for (int i = 0; i < source.Orders.Count; ++i)
+            {
+                if (source.Orders[i].Id == model.Id)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            if (index == -1)
+            {
+                throw new Exception("Элемент не найден");
+            }
+            if (source.Orders[index].Status != OrderStatus.Готов)
+            {
+                throw new Exception("Заказ не в статусе \"Готов\"");
+            }
+            source.Orders[index].Status = OrderStatus.Оплачен;
         }
     }
 }

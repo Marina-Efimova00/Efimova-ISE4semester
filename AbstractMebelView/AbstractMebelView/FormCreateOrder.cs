@@ -30,7 +30,10 @@ namespace AbstractMebelView
         {
             try
             {
-                // как же его реализовать…
+                var list = logicP.GetList();
+                comboBoxProduct.DataSource = list;
+                comboBoxProduct.DisplayMember = "ProductName";
+                comboBoxProduct.ValueMember = "Id";
             }
             catch (Exception ex)
             {

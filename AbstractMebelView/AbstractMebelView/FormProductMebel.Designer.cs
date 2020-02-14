@@ -100,6 +100,7 @@
             this.Controls.Add(this.labelMebel);
             this.Name = "FormProductMebel";
             this.Text = "Product Mebel";
+            this.Load += new System.EventHandler(this.FormProductMebel_Load);
             this.Click += new System.EventHandler(this.FormProductMebel_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
