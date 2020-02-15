@@ -8,5 +8,6 @@ namespace AbstractShopListImplement.Models
     {
         public int Id { get; set; }
         public string MebelName { get; set; }
+        public decimal Price { get; set; }
     }
 }

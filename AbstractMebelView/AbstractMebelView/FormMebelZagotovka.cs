@@ -14,28 +14,28 @@ using Unity;
 
 namespace AbstractMebelView
 {
-    public partial class FormProductMebel : Form
+    public partial class FormMebelZagotovka : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        public ProductMebelViewModel ModelView { get; set; }
-        private readonly IMebelLogic logic;
-        public FormProductMebel(IMebelLogic logic)
+        public MebelZagotovkaViewModel ModelView { get; set; }
+        private readonly IZagotovkaLogic logic;
+        public FormMebelZagotovka(IZagotovkaLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
         }
-        private void FormProductMebel_Load(object sender, EventArgs e)
+        private void FormMebelZagotovka_Load(object sender, EventArgs e)
         {
             try
             {
-                List<MebelViewModel> list = logic.GetList();
+                List<ZagotovkaViewModel> list = logic.GetList();
                 if (list != null)
                 {
-                    comboBoxMebel.DisplayMember = "MebelName";
-                    comboBoxMebel.ValueMember = "Id";
-                    comboBoxMebel.DataSource = list;
-                    comboBoxMebel.SelectedItem = null;
+                    comboBoxZagotovka.DisplayMember = "ZagotovkaName";
+                    comboBoxZagotovka.ValueMember = "Id";
+                    comboBoxZagotovka.DataSource = list;
+                    comboBoxZagotovka.SelectedItem = null;
                 }
             }
             catch (Exception ex)
@@ -45,8 +45,8 @@ namespace AbstractMebelView
             }
             if (ModelView != null)
             {
-                comboBoxMebel.Enabled = false;
-                comboBoxMebel.SelectedValue = ModelView.MebelId;
+                comboBoxZagotovka.Enabled = false;
+                comboBoxZagotovka.SelectedValue = ModelView.ZagotovkaId;
                 textBoxCount.Text = ModelView.Count.ToString();
             }
         }
@@ -58,9 +58,9 @@ namespace AbstractMebelView
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (comboBoxMebel.SelectedValue == null)
+            if (comboBoxZagotovka.SelectedValue == null)
             {
-                MessageBox.Show("Выберите компонент", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Выберите заготовку", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }
@@ -68,10 +68,10 @@ namespace AbstractMebelView
             {
                 if (ModelView == null)
                 {
-                    ModelView = new ProductMebelViewModel
+                    ModelView = new MebelZagotovkaViewModel
                     {
-                        MebelId = Convert.ToInt32(comboBoxMebel.SelectedValue),
-                        MebelName = comboBoxMebel.Text,
+                        ZagotovkaId = Convert.ToInt32(comboBoxZagotovka.SelectedValue),
+                        ZagotovkaName = comboBoxZagotovka.Text,
                         Count = Convert.ToInt32(textBoxCount.Text)
                     };
                 }

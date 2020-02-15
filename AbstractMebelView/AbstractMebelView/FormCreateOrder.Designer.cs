@@ -31,7 +31,7 @@
             this.labelProduct = new System.Windows.Forms.Label();
             this.labelCount = new System.Windows.Forms.Label();
             this.labelSum = new System.Windows.Forms.Label();
-            this.comboBoxProduct = new System.Windows.Forms.ComboBox();
+            this.comboBoxMebel = new System.Windows.Forms.ComboBox();
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.textBoxSum = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
@@ -43,9 +43,9 @@
             this.labelProduct.AutoSize = true;
             this.labelProduct.Location = new System.Drawing.Point(23, 18);
             this.labelProduct.Name = "labelProduct";
-            this.labelProduct.Size = new System.Drawing.Size(54, 13);
+            this.labelProduct.Size = new System.Drawing.Size(49, 13);
             this.labelProduct.TabIndex = 0;
-            this.labelProduct.Text = "Изделие:";
+            this.labelProduct.Text = "Мебель:";
             // 
             // labelCount
             // 
@@ -65,14 +65,14 @@
             this.labelSum.TabIndex = 2;
             this.labelSum.Text = "Сумма:";
             // 
-            // comboBoxProduct
+            // comboBoxMebel
             // 
-            this.comboBoxProduct.FormattingEnabled = true;
-            this.comboBoxProduct.Location = new System.Drawing.Point(120, 15);
-            this.comboBoxProduct.Name = "comboBoxProduct";
-            this.comboBoxProduct.Size = new System.Drawing.Size(348, 21);
-            this.comboBoxProduct.TabIndex = 3;
-            this.comboBoxProduct.SelectedIndexChanged += new System.EventHandler(this.comboBoxProduct_SelectedIndexChanged);
+            this.comboBoxMebel.FormattingEnabled = true;
+            this.comboBoxMebel.Location = new System.Drawing.Point(120, 15);
+            this.comboBoxMebel.Name = "comboBoxMebel";
+            this.comboBoxMebel.Size = new System.Drawing.Size(348, 21);
+            this.comboBoxMebel.TabIndex = 3;
+            this.comboBoxMebel.SelectedIndexChanged += new System.EventHandler(this.comboBoxMebel_SelectedIndexChanged);
             // 
             // textBoxCount
             // 
@@ -119,7 +119,7 @@
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxSum);
             this.Controls.Add(this.textBoxCount);
-            this.Controls.Add(this.comboBoxProduct);
+            this.Controls.Add(this.comboBoxMebel);
             this.Controls.Add(this.labelSum);
             this.Controls.Add(this.labelCount);
             this.Controls.Add(this.labelProduct);
@@ -136,7 +136,7 @@
         private System.Windows.Forms.Label labelProduct;
         private System.Windows.Forms.Label labelCount;
         private System.Windows.Forms.Label labelSum;
-        private System.Windows.Forms.ComboBox comboBoxProduct;
+        private System.Windows.Forms.ComboBox comboBoxMebel;
         private System.Windows.Forms.TextBox textBoxCount;
         private System.Windows.Forms.TextBox textBoxSum;
         private System.Windows.Forms.Button buttonSave;

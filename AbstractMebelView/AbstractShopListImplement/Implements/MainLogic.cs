@@ -21,20 +21,20 @@ namespace AbstractShopListImplement.Implements
             List<OrderViewModel> result = new List<OrderViewModel>();
             for (int i = 0; i < source.Orders.Count; ++i)
             {
-                string productName = string.Empty;
-                for (int j = 0; j < source.Products.Count; ++j)
+                string mebelName = string.Empty;
+                for (int j = 0; j < source.Mebels.Count; ++j)
                 {
-                    if (source.Products[j].Id == source.Orders[i].ProductId)
+                    if (source.Mebels[j].Id == source.Orders[i].MebelId)
                     {
-                        productName = source.Products[j].ProductName;
+                        mebelName = source.Mebels[j].MebelName;
                         break;
                     }
                 }
                 result.Add(new OrderViewModel
                 {
                     Id = source.Orders[i].Id,
-                    ProductId = source.Orders[i].ProductId,
-                    ProductName = productName,
+                    MebelId = source.Orders[i].MebelId,
+                    MebelName = mebelName,
                     Count = source.Orders[i].Count,
                     Sum = source.Orders[i].Sum,
                     DateCreate = source.Orders[i].DateCreate,
@@ -57,7 +57,7 @@ namespace AbstractShopListImplement.Implements
             source.Orders.Add(new Order
             {
                 Id = maxId + 1,
-                ProductId = model.ProductId,
+                MebelId = model.MebelId,
                 DateCreate = DateTime.Now,
                 Count = model.Count,
                 Sum = model.Sum,
@@ -109,7 +109,6 @@ namespace AbstractShopListImplement.Implements
         }
         public void PayOrder(OrderBindingModel model)
         {
-            // как же его реализовать…
             int index = -1;
             for (int i = 0; i < source.Orders.Count; ++i)
             {

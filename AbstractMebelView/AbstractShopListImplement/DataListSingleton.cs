@@ -8,16 +8,16 @@ namespace AbstractShopListImplement
     public class DataListSingleton
     {
         private static DataListSingleton instance;
-        public List<Mebel> Mebels { get; set; }
+        public List<Zagotovka> Zagotovkas { get; set; }
         public List<Order> Orders { get; set; }
-        public List<Product> Products { get; set; }
-        public List<ProductMebel> ProductMebels { get; set; }
+        public List<Mebel> Mebels { get; set; }
+        public List<MebelZagotovka> MebelZagotovkas { get; set; }
         private DataListSingleton()
         {
-            Mebels = new List<Mebel>();
+            Zagotovkas = new List<Zagotovka>();
             Orders = new List<Order>();
-            Products = new List<Product>();
-            ProductMebels = new List<ProductMebel>();
+            Mebels = new List<Mebel>();
+            MebelZagotovkas = new List<MebelZagotovka>();
         }
         public static DataListSingleton GetInstance()
         {

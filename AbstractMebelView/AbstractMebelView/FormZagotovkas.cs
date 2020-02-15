@@ -8,21 +8,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
+using Unity;
 
 namespace AbstractMebelView
 {
-    public partial class FormMebels : Form
+    public partial class FormZagotovkas : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        private readonly IMebelLogic logic;
-        public FormMebels(IMebelLogic logic)
+        private readonly IZagotovkaLogic logic;
+        public FormZagotovkas(IZagotovkaLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
         }
-        private void FormProducts_Load(object sender, EventArgs e)
+        private void FormZagotovkas_Load(object sender, EventArgs e)
         {
             LoadData();
         }
@@ -35,7 +35,8 @@ namespace AbstractMebelView
                 {
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[1].AutoSizeMode =
+                        DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)
@@ -46,7 +47,7 @@ namespace AbstractMebelView
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormMebel>();
+            var form = Container.Resolve<FormZagotovka>();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -56,7 +57,7 @@ namespace AbstractMebelView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormMebel>();
+                var form = Container.Resolve<FormZagotovka>();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -71,7 +72,8 @@ namespace AbstractMebelView
                 if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo,
                MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                    int id =
+                   Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
                         logic.DelElement(id);

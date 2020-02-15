@@ -26,9 +26,9 @@ namespace AbstractMebelView
         private static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
-            currentContainer.RegisterType<IMebelLogic, MebelLogic>(new
+            currentContainer.RegisterType<IZagotovkaLogic, ZagotovkaLogic>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IProductLogic, ProductLogic>(new
+            currentContainer.RegisterType<IMebelLogic, MebelLogic>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMainLogic, MainLogic>(new
            HierarchicalLifetimeManager());

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using AbstractMebelBusinessLogic.ViewModels;
 using AbstractMebelBusinessLogic.BindingModels;
+using AbstractMebelBusinessLogic.ViewModels;
 
 namespace AbstractMebelBusinessLogic.Interfaces
 {

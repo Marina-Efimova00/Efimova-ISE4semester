@@ -1,6 +1,6 @@
 ﻿namespace AbstractMebelView
 {
-    partial class FormProductMebel
+    partial class FormMebelZagotovka
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.labelMebel = new System.Windows.Forms.Label();
             this.labelCount = new System.Windows.Forms.Label();
-            this.comboBoxMebel = new System.Windows.Forms.ComboBox();
+            this.comboBoxZagotovka = new System.Windows.Forms.ComboBox();
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
@@ -42,7 +42,7 @@
             this.labelMebel.Name = "labelMebel";
             this.labelMebel.Size = new System.Drawing.Size(97, 20);
             this.labelMebel.TabIndex = 0;
-            this.labelMebel.Text = "Мебель";
+            this.labelMebel.Text = "Заготовка";
             // 
             // labelCount
             // 
@@ -52,13 +52,13 @@
             this.labelCount.TabIndex = 1;
             this.labelCount.Text = "Количество";
             // 
-            // comboBoxMebel
+            // comboBoxZagotovka
             // 
-            this.comboBoxMebel.FormattingEnabled = true;
-            this.comboBoxMebel.Location = new System.Drawing.Point(149, 12);
-            this.comboBoxMebel.Name = "comboBoxMebel";
-            this.comboBoxMebel.Size = new System.Drawing.Size(329, 21);
-            this.comboBoxMebel.TabIndex = 2;
+            this.comboBoxZagotovka.FormattingEnabled = true;
+            this.comboBoxZagotovka.Location = new System.Drawing.Point(149, 12);
+            this.comboBoxZagotovka.Name = "comboBoxZagotovka";
+            this.comboBoxZagotovka.Size = new System.Drawing.Size(329, 21);
+            this.comboBoxZagotovka.TabIndex = 2;
             // 
             // textBoxCount
             // 
@@ -87,7 +87,7 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // FormProductMebel
+            // FormMebelZagotovka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -95,13 +95,12 @@
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxCount);
-            this.Controls.Add(this.comboBoxMebel);
+            this.Controls.Add(this.comboBoxZagotovka);
             this.Controls.Add(this.labelCount);
             this.Controls.Add(this.labelMebel);
-            this.Name = "FormProductMebel";
-            this.Text = "Product Mebel";
-            this.Load += new System.EventHandler(this.FormProductMebel_Load);
-            this.Click += new System.EventHandler(this.FormProductMebel_Load);
+            this.Name = "FormMebelZagotovka";
+            this.Text = "Mebel Zagotovka";
+            this.Load += new System.EventHandler(this.FormMebelZagotovka_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,7 +110,7 @@
 
         private System.Windows.Forms.Label labelMebel;
         private System.Windows.Forms.Label labelCount;
-        private System.Windows.Forms.ComboBox comboBoxMebel;
+        private System.Windows.Forms.ComboBox comboBoxZagotovka;
         private System.Windows.Forms.TextBox textBoxCount;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;

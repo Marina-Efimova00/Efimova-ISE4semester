@@ -18,9 +18,9 @@ namespace AbstractMebelView
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        private readonly IProductLogic logicP;
+        private readonly IMebelLogic logicP;
         private readonly IMainLogic logicM;
-        public FormCreateOrder(IProductLogic logicP, IMainLogic logicM)
+        public FormCreateOrder(IMebelLogic logicP, IMainLogic logicM)
         {
             InitializeComponent();
             this.logicP = logicP;
@@ -31,9 +31,9 @@ namespace AbstractMebelView
             try
             {
                 var list = logicP.GetList();
-                comboBoxProduct.DataSource = list;
-                comboBoxProduct.DisplayMember = "ProductName";
-                comboBoxProduct.ValueMember = "Id";
+                comboBoxMebel.DataSource = list;
+                comboBoxMebel.DisplayMember = "MebelName";
+                comboBoxMebel.ValueMember = "Id";
             }
             catch (Exception ex)
             {
@@ -43,15 +43,15 @@ namespace AbstractMebelView
         }
         private void CalcSum()
         {
-            if (comboBoxProduct.SelectedValue != null &&
+            if (comboBoxMebel.SelectedValue != null &&
            !string.IsNullOrEmpty(textBoxCount.Text))
             {
                 try
                 {
-                    int id = Convert.ToInt32(comboBoxProduct.SelectedValue);
-                    ProductViewModel product = logicP.GetElement(id);
+                    int id = Convert.ToInt32(comboBoxMebel.SelectedValue);
+                    MebelViewModel mebel = logicP.GetElement(id);
                     int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * product.Price).ToString();
+                    textBoxSum.Text = (count * mebel.Price).ToString();
                 }
                 catch (Exception ex)
                 {
@@ -64,7 +64,7 @@ namespace AbstractMebelView
         {
             CalcSum();
         }
-        private void comboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxMebel_SelectedIndexChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
@@ -76,9 +76,9 @@ namespace AbstractMebelView
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (comboBoxProduct.SelectedValue == null)
+            if (comboBoxMebel.SelectedValue == null)
             {
-                MessageBox.Show("Выберите изделие", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Выберите мебель", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }
@@ -86,7 +86,7 @@ namespace AbstractMebelView
             {
                 logicM.CreateOrder(new OrderBindingModel
                 {
-                    ProductId = Convert.ToInt32(comboBoxProduct.SelectedValue),
+                    MebelId = Convert.ToInt32(comboBoxMebel.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
                 });

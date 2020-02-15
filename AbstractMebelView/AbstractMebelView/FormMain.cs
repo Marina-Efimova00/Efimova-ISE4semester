@@ -47,14 +47,14 @@ namespace AbstractMebelView
                MessageBoxIcon.Error);
             }
         }
-        private void компонентыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void заготовкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormMebels>();
+            var form = Container.Resolve<FormZagotovkas>();
             form.ShowDialog();
         }
-        private void изделияToolStripMenuItem_Click(object sender, EventArgs e)
+        private void мебельToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormProducts>();
+            var form = Container.Resolve<FormMebels>();
             form.ShowDialog();
         }
         private void buttonCreateOrder_Click(object sender, EventArgs e)
