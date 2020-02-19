@@ -32,6 +32,8 @@ namespace AbstractMebelView
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMainLogic, MainLogic>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IStorageLogic, StorageLogic>(new
+           HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

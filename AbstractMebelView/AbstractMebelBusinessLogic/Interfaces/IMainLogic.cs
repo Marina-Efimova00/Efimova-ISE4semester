@@ -13,5 +13,6 @@ namespace AbstractMebelBusinessLogic.Interfaces
         void TakeOrderInWork(OrderBindingModel model);
         void FinishOrder(OrderBindingModel model);
         void PayOrder(OrderBindingModel model);
+        void FillStorage(StorageZagotovkaBindingModel model);
     }
 }
