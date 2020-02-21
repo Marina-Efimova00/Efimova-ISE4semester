@@ -1,4 +1,5 @@
-﻿using AbstractMebelBusinessLogic.Interfaces;
+﻿using AbstractMebelBusinessLogic.BusinessLogics;
+using AbstractMebelBusinessLogic.Interfaces;
 using AbstractShopListImplement.Implements;
 using System;
 using System.Collections.Generic;
@@ -28,12 +29,13 @@ namespace AbstractMebelView
             var currentContainer = new UnityContainer();
             currentContainer.RegisterType<IZagotovkaLogic, ZagotovkaLogic>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IOrderLogic, OrderLogic>(new
+           HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMebelLogic, MebelLogic>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IMainLogic, MainLogic>(new
-           HierarchicalLifetimeManager());
             currentContainer.RegisterType<IStorageLogic, StorageLogic>(new
-           HierarchicalLifetimeManager());
+HierarchicalLifetimeManager());
+            currentContainer.RegisterType<MainLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

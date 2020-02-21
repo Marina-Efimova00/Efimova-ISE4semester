@@ -36,6 +36,25 @@ namespace AbstractMebelView
                     {
                         textBoxName.Text = view.StorageName;
                     }
+                    var storageList = logic.GetList();
+
+                    var storageZagotovkas = storageList[0].StorageZagotovkas;
+                    for (int i = 0; i < storageList.Count; ++i)
+                    {
+                        if (storageList[i].Id == id)
+                        {
+                            storageZagotovkas = storageList[i].StorageZagotovkas;
+                        }
+                    }
+                    if (storageZagotovkas != null)
+                    {
+                        dataGridView.DataSource = storageZagotovkas;
+                        dataGridView.Columns[0].Visible = false;
+                        dataGridView.Columns[1].Visible = false;
+                        dataGridView.Columns[2].Visible = false;
+                        dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                    }
                 }
                 catch (Exception ex)
                 {

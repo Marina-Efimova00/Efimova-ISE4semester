@@ -99,8 +99,7 @@
             this.Controls.Add(this.labelCount);
             this.Controls.Add(this.labelMebel);
             this.Name = "FormMebelZagotovka";
-            this.Text = "Mebel Zagotovka";
-            this.Load += new System.EventHandler(this.FormMebelZagotovka_Load);
+            this.Text = "Заготовка мебели";
             this.ResumeLayout(false);
             this.PerformLayout();
 

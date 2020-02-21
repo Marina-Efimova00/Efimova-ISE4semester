@@ -31,7 +31,7 @@ namespace AbstractMebelView
             {
                 try
                 {
-                    var view = logic.GetElement(id.Value);
+                    var view = logic.Read(new ZagotovkaBindingModel { Id = id })?[0];
                     if (view != null)
                     {
                         textBoxName.Text = view.ZagotovkaName;
@@ -54,21 +54,11 @@ namespace AbstractMebelView
             }
             try
             {
-                if (id.HasValue)
+                logic.CreateOrUpdate(new ZagotovkaBindingModel
                 {
-                    logic.UpdElement(new ZagotovkaBindingModel
-                    {
-                        Id = id.Value,
-                        ZagotovkaName = textBoxName.Text
-                    });
-                }
-                else
-                {
-                    logic.AddElement(new ZagotovkaBindingModel
-                    {
-                        ZagotovkaName = textBoxName.Text
-                    });
-                }
+                    Id = id,
+                    ZagotovkaName = textBoxName.Text
+                });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;

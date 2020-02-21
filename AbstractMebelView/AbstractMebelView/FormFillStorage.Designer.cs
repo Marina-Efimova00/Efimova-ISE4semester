@@ -34,10 +34,8 @@
             this.labelCount = new System.Windows.Forms.Label();
             this.comboBoxZagotovka = new System.Windows.Forms.ComboBox();
             this.textBoxCount = new System.Windows.Forms.TextBox();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // labelName
@@ -55,7 +53,6 @@
             this.comboBoxStorage.Name = "comboBoxStorage";
             this.comboBoxStorage.Size = new System.Drawing.Size(332, 21);
             this.comboBoxStorage.TabIndex = 1;
-            this.comboBoxStorage.SelectedIndexChanged += new System.EventHandler(this.comboBoxStorage_SelectedValueChanged);
             // 
             // labelZagotovka
             // 
@@ -90,20 +87,11 @@
             this.textBoxCount.Size = new System.Drawing.Size(332, 20);
             this.textBoxCount.TabIndex = 5;
             // 
-            // dataGridView
-            // 
-            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(24, 143);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(408, 213);
-            this.dataGridView.TabIndex = 6;
-            // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(171, 375);
+            this.buttonSave.Location = new System.Drawing.Point(199, 152);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(108, 30);
+            this.buttonSave.Size = new System.Drawing.Size(108, 22);
             this.buttonSave.TabIndex = 7;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -111,9 +99,9 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(328, 375);
+            this.buttonCancel.Location = new System.Drawing.Point(329, 152);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(104, 32);
+            this.buttonCancel.Size = new System.Drawing.Size(104, 22);
             this.buttonCancel.TabIndex = 8;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -123,10 +111,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(458, 435);
+            this.ClientSize = new System.Drawing.Size(458, 185);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.textBoxCount);
             this.Controls.Add(this.comboBoxZagotovka);
             this.Controls.Add(this.labelCount);
@@ -136,7 +123,6 @@
             this.Name = "FormFillStorage";
             this.Text = "FillStorage";
             this.Load += new System.EventHandler(this.FormFillStorage_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,7 +136,6 @@
         private System.Windows.Forms.Label labelCount;
         private System.Windows.Forms.ComboBox comboBoxZagotovka;
         private System.Windows.Forms.TextBox textBoxCount;
-        private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
     }

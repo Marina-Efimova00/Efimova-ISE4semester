@@ -40,6 +40,9 @@
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -130,8 +133,13 @@
             // 
             // dataGridView
             // 
+            this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3});
             this.dataGridView.Location = new System.Drawing.Point(8, 27);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersVisible = false;
@@ -159,6 +167,24 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "id";
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Заготовка";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 300;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Количество";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 200;
+            // 
             // FormMebel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -172,7 +198,7 @@
             this.Controls.Add(this.labelPrice);
             this.Controls.Add(this.labelName);
             this.Name = "FormMebel";
-            this.Text = "Mebel";
+            this.Text = "Мебель";
             this.Load += new System.EventHandler(this.FormMebel_Load);
             this.groupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
@@ -195,5 +221,8 @@
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }

@@ -158,5 +158,69 @@ namespace AbstractShopListImplement.Implements
             }
             throw new Exception("Элемент не найден");
         }
+        public void FillStorage(StorageZagotovkaBindingModel model)
+        {
+            int index = -1;
+            for (int i = 0; i < source.Storages.Count; ++i)
+            {
+                if (source.Storages[i].Id == model.StorageId)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            if (index == -1)
+            {
+                throw new Exception("Склад не найден");
+            }
+
+            index = -1;
+            for (int i = 0; i < source.Zagotovkas.Count; ++i)
+            {
+                if (source.Zagotovkas[i].Id == model.ZagotovkaId)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            if (index == -1)
+            {
+                throw new Exception("Цветок не найден");
+            }
+
+            int foundItemIndex = -1;
+            for (int i = 0; i < source.StorageZagotovkas.Count; ++i)
+            {
+                if (source.StorageZagotovkas[i].ZagotovkaId == model.ZagotovkaId
+                    && source.StorageZagotovkas[i].StorageId == model.StorageId)
+                {
+                    foundItemIndex = i;
+                    break;
+                }
+            }
+            if (foundItemIndex != -1)
+            {
+                source.StorageZagotovkas[foundItemIndex].Count =
+                    source.StorageZagotovkas[foundItemIndex].Count + model.Count;
+            }
+            else
+            {
+                int maxId = 0;
+                for (int i = 0; i < source.StorageZagotovkas.Count; ++i)
+                {
+                    if (source.StorageZagotovkas[i].Id > maxId)
+                    {
+                        maxId = source.StorageZagotovkas[i].Id;
+                    }
+                }
+                source.StorageZagotovkas.Add(new StorageZagotovka
+                {
+                    Id = maxId + 1,
+                    StorageId = model.StorageId,
+                    ZagotovkaId = model.ZagotovkaId,
+                    Count = model.Count
+                });
+            }
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace AbstractMebelView
         public int Id { set { id = value; } }
         private readonly IMebelLogic logic;
         private int? id;
-        private List<MebelZagotovkaViewModel> mebelZagotovkas;
+        private Dictionary<int, (string, int)> MebelZagotovkas;
         public FormMebel(IMebelLogic service)
         {
             InitializeComponent();
@@ -33,12 +33,15 @@ namespace AbstractMebelView
             {
                 try
                 {
-                    MebelViewModel view = logic.GetElement(id.Value);
+                    MebelViewModel view = logic.Read(new MebelBindingModel
+                    {
+                        Id = id.Value
+                    })?[0];
                     if (view != null)
                     {
                         textBoxName.Text = view.MebelName;
                         textBoxPrice.Text = view.Price.ToString();
-                        mebelZagotovkas = view.MebelZagotovkas;
+                        MebelZagotovkas = view.MebelZagotovkas;
                         LoadData();
                     }
                 }
@@ -50,22 +53,20 @@ namespace AbstractMebelView
             }
             else
             {
-                mebelZagotovkas = new List<MebelZagotovkaViewModel>();
+                MebelZagotovkas = new Dictionary<int, (string, int)>();
             }
         }
         private void LoadData()
         {
             try
             {
-                if (mebelZagotovkas != null)
+                if (MebelZagotovkas != null)
                 {
-                    dataGridView.DataSource = null;
-                    dataGridView.DataSource = mebelZagotovkas;
-                    dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[1].Visible = false;
-                    dataGridView.Columns[2].Visible = false;
-                    dataGridView.Columns[3].AutoSizeMode =
-                   DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Rows.Clear();
+                    foreach (var bf in MebelZagotovkas)
+                    {
+                        dataGridView.Rows.Add(new object[] { bf.Key, bf.Value.Item1, bf.Value.Item2 });
+                    }
                 }
             }
             catch (Exception ex)
@@ -79,13 +80,13 @@ namespace AbstractMebelView
             var form = Container.Resolve<FormMebelZagotovka>();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                if (form.ModelView != null)
+                if (MebelZagotovkas.ContainsKey(form.Id))
                 {
-                    if (id.HasValue)
-                    {
-                        form.ModelView.MebelId = id.Value;
-                    }
-                    mebelZagotovkas.Add(form.ModelView);
+                    MebelZagotovkas[form.Id] = (form.ZagotovkaName, form.Count);
+                }
+                else
+                {
+                    MebelZagotovkas.Add(form.Id, (form.ZagotovkaName, form.Count));
                 }
                 LoadData();
             }
@@ -95,12 +96,12 @@ namespace AbstractMebelView
             if (dataGridView.SelectedRows.Count == 1)
             {
                 var form = Container.Resolve<FormMebelZagotovka>();
-                form.ModelView =
-               mebelZagotovkas[dataGridView.SelectedRows[0].Cells[0].RowIndex];
+                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                form.Id = id;
+                form.Count = MebelZagotovkas[id].Item2;
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    mebelZagotovkas[dataGridView.SelectedRows[0].Cells[0].RowIndex] =
-                   form.ModelView;
+                    MebelZagotovkas[form.Id] = (form.ZagotovkaName, form.Count);
                     LoadData();
                 }
             }
@@ -114,7 +115,7 @@ namespace AbstractMebelView
                 {
                     try
                     {
-                        mebelZagotovkas.RemoveAt(dataGridView.SelectedRows[0].Cells[0].RowIndex);
+                        MebelZagotovkas.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
                     }
                     catch (Exception ex)
                     {
@@ -143,7 +144,7 @@ namespace AbstractMebelView
                MessageBoxIcon.Error);
                 return;
             }
-            if (mebelZagotovkas == null || mebelZagotovkas.Count == 0)
+            if (MebelZagotovkas == null || MebelZagotovkas.Count == 0)
             {
                 MessageBox.Show("Заполните заготовки", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
@@ -151,37 +152,13 @@ namespace AbstractMebelView
             }
             try
             {
-                List<MebelZagotovkaBindingModel> mebelZagotovkaBM = new
-               List<MebelZagotovkaBindingModel>();
-                for (int i = 0; i < mebelZagotovkas.Count; ++i)
+                logic.CreateOrUpdate(new MebelBindingModel
                 {
-                    mebelZagotovkaBM.Add(new MebelZagotovkaBindingModel
-                    {
-                        Id = mebelZagotovkas[i].Id,
-                        MebelId = mebelZagotovkas[i].MebelId,
-                        ZagotovkaId = mebelZagotovkas[i].ZagotovkaId,
-                        Count = mebelZagotovkas[i].Count
-                    });
-                }
-                if (id.HasValue)
-                {
-                    logic.UpdElement(new MebelBindingModel
-                    {
-                        Id = id.Value,
-                        MebelName = textBoxName.Text,
-                        Price = Convert.ToDecimal(textBoxPrice.Text),
-                        MebelZagotovkas = mebelZagotovkaBM
-                    });
-                }
-                else
-                {
-                    logic.AddElement(new MebelBindingModel
-                    {
-                        MebelName = textBoxName.Text,
-                        Price = Convert.ToDecimal(textBoxPrice.Text),
-                        MebelZagotovkas = mebelZagotovkaBM
-                    });
-                }
+                    Id = id,
+                    MebelName = textBoxName.Text,
+                    Price = Convert.ToDecimal(textBoxPrice.Text),
+                    MebelZagotovkas = MebelZagotovkas
+                });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;

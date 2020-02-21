@@ -18,36 +18,30 @@ namespace AbstractMebelView
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        public MebelZagotovkaViewModel ModelView { get; set; }
-        private readonly IZagotovkaLogic logic;
+        public int Id
+        {
+            get { return Convert.ToInt32(comboBoxZagotovka.SelectedValue); }
+            set { comboBoxZagotovka.SelectedValue = value; }
+        }
+        public string ZagotovkaName { get { return comboBoxZagotovka.Text; } }
+        public int Count
+        {
+            get { return Convert.ToInt32(textBoxCount.Text); }
+            set
+            {
+                textBoxCount.Text = value.ToString();
+            }
+        }
         public FormMebelZagotovka(IZagotovkaLogic logic)
         {
             InitializeComponent();
-            this.logic = logic;
-        }
-        private void FormMebelZagotovka_Load(object sender, EventArgs e)
-        {
-            try
+            List<ZagotovkaViewModel> list = logic.Read(null);
+            if (list != null)
             {
-                List<ZagotovkaViewModel> list = logic.GetList();
-                if (list != null)
-                {
-                    comboBoxZagotovka.DisplayMember = "ZagotovkaName";
-                    comboBoxZagotovka.ValueMember = "Id";
-                    comboBoxZagotovka.DataSource = list;
-                    comboBoxZagotovka.SelectedItem = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
-            }
-            if (ModelView != null)
-            {
-                comboBoxZagotovka.Enabled = false;
-                comboBoxZagotovka.SelectedValue = ModelView.ZagotovkaId;
-                textBoxCount.Text = ModelView.Count.ToString();
+                comboBoxZagotovka.DisplayMember = "ZagotovkaName";
+                comboBoxZagotovka.ValueMember = "Id";
+                comboBoxZagotovka.DataSource = list;
+                comboBoxZagotovka.SelectedItem = null;
             }
         }
         private void buttonSave_Click(object sender, EventArgs e)
@@ -64,31 +58,8 @@ namespace AbstractMebelView
                MessageBoxIcon.Error);
                 return;
             }
-            try
-            {
-                if (ModelView == null)
-                {
-                    ModelView = new MebelZagotovkaViewModel
-                    {
-                        ZagotovkaId = Convert.ToInt32(comboBoxZagotovka.SelectedValue),
-                        ZagotovkaName = comboBoxZagotovka.Text,
-                        Count = Convert.ToInt32(textBoxCount.Text)
-                    };
-                }
-                else
-                {
-                    ModelView.Count = Convert.ToInt32(textBoxCount.Text);
-                }
-                MessageBox.Show("Сохранение прошло успешно", "Сообщение",
-               MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DialogResult = DialogResult.OK;
-                Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
-            }
+            DialogResult = DialogResult.OK;
+            Close();
         }
         private void buttonCancel_Click(object sender, EventArgs e)
         {

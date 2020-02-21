@@ -6,9 +6,9 @@ namespace AbstractMebelBusinessLogic.BindingModels
 {
     public class MebelBindingModel
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string MebelName { get; set; }
         public decimal Price { get; set; }
-        public List<MebelZagotovkaBindingModel> MebelZagotovkas { get; set; }
+        public Dictionary<int, (string, int)> MebelZagotovkas { get; set; }
     }
 }

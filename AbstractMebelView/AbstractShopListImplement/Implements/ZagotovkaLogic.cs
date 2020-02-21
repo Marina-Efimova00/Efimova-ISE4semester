@@ -15,85 +15,83 @@ namespace AbstractShopListImplement.Implements
         {
             source = DataListSingleton.GetInstance();
         }
-        public List<ZagotovkaViewModel> GetList()
+        public void CreateOrUpdate(ZagotovkaBindingModel model)
         {
-            List<ZagotovkaViewModel> result = new List<ZagotovkaViewModel>();
+            Zagotovka tempZagotovka = model.Id.HasValue ? null : new Zagotovka
+            {
+                Id = 1
+            };
+            foreach (var zagotovka in source.Zagotovkas)
+            {
+                if (zagotovka.ZagotovkaName == model.ZagotovkaName && zagotovka.Id !=
+               model.Id)
+                {
+                    throw new Exception("Уже есть заготовка с таким названием");
+                }
+                if (!model.Id.HasValue && zagotovka.Id >= tempZagotovka.Id)
+                {
+                    tempZagotovka.Id = zagotovka.Id + 1;
+                }
+                else if (model.Id.HasValue && zagotovka.Id == model.Id)
+                {
+                    tempZagotovka = zagotovka;
+                }
+            }
+            if (model.Id.HasValue)
+            {
+                if (tempZagotovka == null)
+                {
+                    throw new Exception("Элемент не найден");
+                }
+                CreateModel(model, tempZagotovka);
+            }
+            else
+            {
+                source.Zagotovkas.Add(CreateModel(model, tempZagotovka));
+            }
+        }
+        public void Delete(ZagotovkaBindingModel model)
+        {
             for (int i = 0; i < source.Zagotovkas.Count; ++i)
             {
-                result.Add(new ZagotovkaViewModel
+                if (source.Zagotovkas[i].Id == model.Id.Value)
                 {
-                    Id = source.Zagotovkas[i].Id,
-                    ZagotovkaName = source.Zagotovkas[i].ZagotovkaName
-                });
+                    source.Zagotovkas.RemoveAt(i);
+                    return;
+                }
+            }
+            throw new Exception("Элемент не найден");
+        }
+        public List<ZagotovkaViewModel> Read(ZagotovkaBindingModel model)
+        {
+            List<ZagotovkaViewModel> result = new List<ZagotovkaViewModel>();
+            foreach (var zagotovka in source.Zagotovkas)
+            {
+                if (model != null)
+                {
+                    if (zagotovka.Id == model.Id)
+                    {
+                        result.Add(CreateViewModel(zagotovka));
+                        break;
+                    }
+                    continue;
+                }
+                result.Add(CreateViewModel(zagotovka));
             }
             return result;
         }
-        public ZagotovkaViewModel GetElement(int id)
+        private Zagotovka CreateModel(ZagotovkaBindingModel model, Zagotovka zagotovka)
         {
-            for (int i = 0; i < source.Zagotovkas.Count; ++i)
-            {
-                if (source.Zagotovkas[i].Id == id)
-                {
-                    return new ZagotovkaViewModel
-                    {
-                        Id = source.Zagotovkas[i].Id,
-                        ZagotovkaName = source.Zagotovkas[i].ZagotovkaName
-                    };
-                }
-            }
-            throw new Exception("Элемент не найден");
+            zagotovka.ZagotovkaName = model.ZagotovkaName;
+            return zagotovka;
         }
-        public void AddElement(ZagotovkaBindingModel model)
+        private ZagotovkaViewModel CreateViewModel(Zagotovka zagotovka)
         {
-            int maxId = 0;
-            for (int i = 0; i < source.Zagotovkas.Count; ++i)
+            return new ZagotovkaViewModel
             {
-                if (source.Zagotovkas[i].Id > maxId)
-                {
-                    maxId = source.Zagotovkas[i].Id;
-                }
-                if (source.Zagotovkas[i].ZagotovkaName == model.ZagotovkaName)
-                {
-                    throw new Exception("Уже есть заготовка с таким названием");
-                }
-            }
-            source.Zagotovkas.Add(new Zagotovka
-            {
-                Id = maxId + 1,
-                ZagotovkaName = model.ZagotovkaName
-            });
-        }
-        public void UpdElement(ZagotovkaBindingModel model)
-        {
-            int index = -1;
-            for (int i = 0; i < source.Zagotovkas.Count; ++i)
-            {
-                if (source.Zagotovkas[i].Id == model.Id)
-                {
-                    index = i;
-                }
-                if (source.Zagotovkas[i].ZagotovkaName == model.ZagotovkaName &&
-               source.Zagotovkas[i].Id != model.Id)
-                {
-                    throw new Exception("Уже есть заготовка с таким названием");
-                }
-            }
-            if (index == -1)
-            {
-                throw new Exception("Элемент не найден");
-            }
-            source.Zagotovkas[index].ZagotovkaName = model.ZagotovkaName;
-        }
-        public void DelElement(int id)
-        {
-            for (int i = 0; i < source.Zagotovkas.Count; ++i)
-            {
-                if (source.Zagotovkas[i].Id == id)
-                {
-                    source.Zagotovkas.RemoveAt(i);
-                }
-            }
-            throw new Exception("Элемент не найден");
+                Id = zagotovka.Id,
+                ZagotovkaName = zagotovka.ZagotovkaName
+            };
         }
     }
 }

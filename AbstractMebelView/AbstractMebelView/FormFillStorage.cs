@@ -1,4 +1,5 @@
 ﻿using AbstractMebelBusinessLogic.BindingModels;
+using AbstractMebelBusinessLogic.BusinessLogics;
 using AbstractMebelBusinessLogic.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,9 @@ namespace AbstractMebelView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly IZagotovkaLogic logicZ;
-        private readonly IMainLogic logicM;
+        private readonly MainLogic logicM;
         private readonly IStorageLogic logicS;
-        private bool isLoaded = false;
-        public FormFillStorage(IZagotovkaLogic logicZ, IMainLogic logicM, IStorageLogic logicS)
+        public FormFillStorage(IZagotovkaLogic logicZ, MainLogic logicM, IStorageLogic logicS)
         {
             InitializeComponent();
             this.logicZ = logicZ;
@@ -37,24 +37,10 @@ namespace AbstractMebelView
                 comboBoxStorage.DisplayMember = "StorageName";
                 comboBoxStorage.ValueMember = "Id";
 
-                var zagotovkaList = logicZ.GetList();
+                var zagotovkaList = logicZ.Read(null);
                 comboBoxZagotovka.DataSource = zagotovkaList;
                 comboBoxZagotovka.DisplayMember = "ZagotovkaName";
                 comboBoxZagotovka.ValueMember = "Id";
-
-                if (storageList.Count > 0)
-                {
-                    var storageZagotovkas = storageList[0].StorageZagotovkas;
-                    if (storageZagotovkas != null)
-                    {
-                        dataGridView.DataSource = storageZagotovkas;
-                        dataGridView.Columns[0].Visible = false;
-                        dataGridView.Columns[1].Visible = false;
-                        dataGridView.Columns[2].Visible = false;
-                        dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    }
-                }
-                this.isLoaded = true;
             }
             catch (Exception ex)
             {
@@ -98,7 +84,6 @@ MessageBoxIcon.Error);
                 });
                 MessageBox.Show("Склад успешно пополнен", "Сообщение",
                   MessageBoxButtons.OK, MessageBoxIcon.Information);
-                UpdateDataGridView();
             }
             catch (Exception ex)
             {
@@ -110,42 +95,6 @@ MessageBoxIcon.Error);
         {
             DialogResult = DialogResult.Cancel;
             Close();
-        }
-
-        private void comboBoxStorage_SelectedValueChanged(object sender, EventArgs e)
-        {
-            UpdateDataGridView();
-        }
-
-        private void UpdateDataGridView()
-        {
-            if (!this.isLoaded) return;
-            var storageList = logicS.GetList();
-            try
-            {
-                int id = Convert.ToInt32(comboBoxStorage.SelectedValue);
-                var storageZagotovkas = storageList[0].StorageZagotovkas;
-                for (int i = 0; i < storageList.Count; ++i)
-                {
-                    if (storageList[i].Id == id)
-                    {
-                        storageZagotovkas = storageList[i].StorageZagotovkas;
-                    }
-                }
-                if (storageZagotovkas != null)
-                {
-                    dataGridView.DataSource = storageZagotovkas;
-                    dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[1].Visible = false;
-                    dataGridView.Columns[2].Visible = false;
-                    dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-MessageBoxIcon.Error);
-            }
         }
     }
 }
