@@ -8,10 +8,8 @@ namespace AbstractMebelBusinessLogic.Interfaces
 {
     public interface IZagotovkaLogic
     {
-        List<ZagotovkaViewModel> GetList();
-        ZagotovkaViewModel GetElement(int id);
-        void AddElement(ZagotovkaBindingModel model);
-        void UpdElement(ZagotovkaBindingModel model);
-        void DelElement(int id);
+        List<ZagotovkaViewModel> Read(ZagotovkaBindingModel model);
+        void CreateOrUpdate(ZagotovkaBindingModel model);
+        void Delete(ZagotovkaBindingModel model);
     }
 }

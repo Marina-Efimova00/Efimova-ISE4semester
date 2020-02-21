@@ -4,9 +4,8 @@ using System.Text;
 
 namespace AbstractMebelBusinessLogic.BindingModels
 {
-    public class ZagotovkaBindingModel
+    public class ChangeStatusBindingModel
     {
-        public int? Id { get; set; }
-        public string ZagotovkaName { get; set; }
+        public int OrderId { get; set; }
     }
 }

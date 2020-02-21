@@ -1,4 +1,5 @@
 ﻿using AbstractMebelBusinessLogic.BindingModels;
+using AbstractMebelBusinessLogic.BusinessLogics;
 using AbstractMebelBusinessLogic.Interfaces;
 using AbstractMebelBusinessLogic.ViewModels;
 using System;
@@ -19,8 +20,8 @@ namespace AbstractMebelView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly IMebelLogic logicP;
-        private readonly IMainLogic logicM;
-        public FormCreateOrder(IMebelLogic logicP, IMainLogic logicM)
+        private readonly MainLogic logicM;
+        public FormCreateOrder(IMebelLogic logicP, MainLogic logicM)
         {
             InitializeComponent();
             this.logicP = logicP;
@@ -30,7 +31,7 @@ namespace AbstractMebelView
         {
             try
             {
-                var list = logicP.GetList();
+                var list = logicP.Read(null);
                 comboBoxMebel.DataSource = list;
                 comboBoxMebel.DisplayMember = "MebelName";
                 comboBoxMebel.ValueMember = "Id";
@@ -49,7 +50,7 @@ namespace AbstractMebelView
                 try
                 {
                     int id = Convert.ToInt32(comboBoxMebel.SelectedValue);
-                    MebelViewModel mebel = logicP.GetElement(id);
+                    MebelViewModel mebel = logicP.Read(new MebelBindingModel{ Id = id })?[0];
                     int count = Convert.ToInt32(textBoxCount.Text);
                     textBoxSum.Text = (count * mebel.Price).ToString();
                 }
@@ -84,7 +85,7 @@ namespace AbstractMebelView
             }
             try
             {
-                logicM.CreateOrder(new OrderBindingModel
+                logicM.CreateOrder(new CreateOrderBindingModel
                 {
                     MebelId = Convert.ToInt32(comboBoxMebel.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
@@ -106,5 +107,5 @@ namespace AbstractMebelView
             DialogResult = DialogResult.Cancel;
             Close();
         }
-    }
+    } 
 }

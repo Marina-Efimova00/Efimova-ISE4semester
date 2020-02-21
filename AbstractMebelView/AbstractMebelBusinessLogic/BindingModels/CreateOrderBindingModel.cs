@@ -4,11 +4,10 @@ using System.Text;
 
 namespace AbstractMebelBusinessLogic.BindingModels
 {
-    public class MebelZagotovkaBindingModel
+    public class CreateOrderBindingModel
     {
-        public int Id { get; set; }
         public int MebelId { get; set; }
-        public int ZagotovkaId { get; set; }
         public int Count { get; set; }
+        public decimal Sum { get; set; }
     }
 }

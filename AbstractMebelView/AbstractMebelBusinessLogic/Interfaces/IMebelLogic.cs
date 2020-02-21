@@ -8,10 +8,8 @@ namespace AbstractMebelBusinessLogic.Interfaces
 {
     public interface IMebelLogic
     {
-        List<MebelViewModel> GetList();
-        MebelViewModel GetElement(int id);
-        void AddElement(MebelBindingModel model);
-        void UpdElement(MebelBindingModel model);
-        void DelElement(int id);
+        List<MebelViewModel> Read(MebelBindingModel model);
+        void CreateOrUpdate(MebelBindingModel model);
+        void Delete(MebelBindingModel model);
     }
 }

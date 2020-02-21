@@ -75,14 +75,14 @@
             // заготовкаToolStripMenuItem
             // 
             this.заготовкаToolStripMenuItem.Name = "заготовкаToolStripMenuItem";
-            this.заготовкаToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.заготовкаToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.заготовкаToolStripMenuItem.Text = "Заготовка";
             this.заготовкаToolStripMenuItem.Click += new System.EventHandler(this.заготовкиToolStripMenuItem_Click);
             // 
             // мебельToolStripMenuItem
             // 
             this.мебельToolStripMenuItem.Name = "мебельToolStripMenuItem";
-            this.мебельToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.мебельToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.мебельToolStripMenuItem.Text = "Мебель";
             this.мебельToolStripMenuItem.Click += new System.EventHandler(this.мебельToolStripMenuItem_Click);
             // 
@@ -150,7 +150,7 @@
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             this.Name = "FormMain";
-            this.Text = "Absrtact Shop";
+            this.Text = "Магазин";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();

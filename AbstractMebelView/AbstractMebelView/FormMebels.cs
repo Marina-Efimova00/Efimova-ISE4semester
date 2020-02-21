@@ -1,4 +1,5 @@
-﻿using AbstractMebelBusinessLogic.Interfaces;
+﻿using AbstractMebelBusinessLogic.BindingModels;
+using AbstractMebelBusinessLogic.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,12 +31,13 @@ namespace AbstractMebelView
         {
             try
             {
-                var list = logic.GetList();
+                var list = logic.Read(null);
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[3].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -74,7 +76,7 @@ namespace AbstractMebelView
                     int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        logic.DelElement(id);
+                        logic.Delete(new MebelBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

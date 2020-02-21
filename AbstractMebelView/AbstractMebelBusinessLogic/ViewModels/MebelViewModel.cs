@@ -12,6 +12,6 @@ namespace AbstractMebelBusinessLogic.ViewModels
         public string MebelName { get; set; }
         [DisplayName("Цена")]
         public decimal Price { get; set; }
-        public List<MebelZagotovkaViewModel> MebelZagotovkas { get; set; }
+        public Dictionary<int, (string, int)> MebelZagotovkas { get; set; }
     }
 }
