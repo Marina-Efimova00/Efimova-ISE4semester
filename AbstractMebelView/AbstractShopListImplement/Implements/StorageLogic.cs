@@ -160,34 +160,6 @@ namespace AbstractShopListImplement.Implements
         }
         public void FillStorage(StorageZagotovkaBindingModel model)
         {
-            int index = -1;
-            for (int i = 0; i < source.Storages.Count; ++i)
-            {
-                if (source.Storages[i].Id == model.StorageId)
-                {
-                    index = i;
-                    break;
-                }
-            }
-            if (index == -1)
-            {
-                throw new Exception("Склад не найден");
-            }
-
-            index = -1;
-            for (int i = 0; i < source.Zagotovkas.Count; ++i)
-            {
-                if (source.Zagotovkas[i].Id == model.ZagotovkaId)
-                {
-                    index = i;
-                    break;
-                }
-            }
-            if (index == -1)
-            {
-                throw new Exception("Цветок не найден");
-            }
-
             int foundItemIndex = -1;
             for (int i = 0; i < source.StorageZagotovkas.Count; ++i)
             {
