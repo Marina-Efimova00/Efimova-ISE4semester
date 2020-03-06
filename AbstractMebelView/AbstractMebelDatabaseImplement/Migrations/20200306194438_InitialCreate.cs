@@ -14,7 +14,7 @@ namespace AbstractMebelDatabaseImplement.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MebelName = table.Column<string>(nullable: false),
-                    Cost = table.Column<decimal>(nullable: false)
+                    Price = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -22,7 +22,7 @@ namespace AbstractMebelDatabaseImplement.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Zagogtovkas",
+                name: "Zagotovkas",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -31,7 +31,7 @@ namespace AbstractMebelDatabaseImplement.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Zagogtovkas", x => x.Id);
+                    table.PrimaryKey("PK_Zagotovkas", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -78,9 +78,9 @@ namespace AbstractMebelDatabaseImplement.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MebelZagotovkas_Zagogtovkas_ZagotovkaId",
+                        name: "FK_MebelZagotovkas_Zagotovkas_ZagotovkaId",
                         column: x => x.ZagotovkaId,
-                        principalTable: "Zagogtovkas",
+                        principalTable: "Zagotovkas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -111,7 +111,7 @@ namespace AbstractMebelDatabaseImplement.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Zagogtovkas");
+                name: "Zagotovkas");
 
             migrationBuilder.DropTable(
                 name: "Mebels");

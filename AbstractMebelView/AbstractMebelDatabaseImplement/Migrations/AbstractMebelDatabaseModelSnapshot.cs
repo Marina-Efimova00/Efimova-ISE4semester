@@ -26,12 +26,12 @@ namespace AbstractMebelDatabaseImplement.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("MebelName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -109,7 +109,7 @@ namespace AbstractMebelDatabaseImplement.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Zagogtovkas");
+                    b.ToTable("Zagotovkas");
                 });
 
             modelBuilder.Entity("AbstractMebelDatabaseImplement.Models.MebelZagotovka", b =>
