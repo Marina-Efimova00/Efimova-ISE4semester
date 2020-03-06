@@ -148,13 +148,13 @@
       <Project>{23b7a023-1cff-47f4-97f1-eb24e0041597}</Project>
       <Name>AbstractMebelBusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AbstractShopFileImplement\AbstractShopFileImplement.csproj">
+    <ProjectReference Include="..\AbstractShopFileImplement\AbstractMebelFileImplement.csproj">
       <Project>{b52e0f3d-b539-4743-9c34-55928288ca12}</Project>
-      <Name>AbstractShopFileImplement</Name>
+      <Name>AbstractMebelFileImplement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AbstractShopListImplement\AbstractShopListImplement.csproj">
+    <ProjectReference Include="..\AbstractShopListImplement\AbstractMebelListImplement.csproj">
       <Project>{e12ac114-f645-4d5c-9644-33b925654bfe}</Project>
-      <Name>AbstractShopListImplement</Name>
+      <Name>AbstractMebelListImplement</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AbstractMebelBusinessLogic\AbstractMebelBusinessLogic.csproj" />
-    <ProjectReference Include="..\AbstractShopListImplement\AbstractShopListImplement.csproj" />
+    <ProjectReference Include="..\AbstractShopListImplement\AbstractMebelListImplement.csproj" />
   </ItemGroup>
 
 </Project>
