@@ -122,7 +122,7 @@
             this.Controls.Add(this.comboBoxZagotovka);
             this.Controls.Add(this.comboBoxStorage);
             this.Name = "FormFillStorage";
-            this.Text = "FormFillStorage";
+            this.Text = "Пополнение склада";
             this.Load += new System.EventHandler(this.FormFillStorage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
