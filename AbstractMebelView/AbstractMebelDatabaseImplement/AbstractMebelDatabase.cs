@@ -1,0 +1,25 @@
+﻿using AbstractMebelDatabaseImplement.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace AbstractMebelDatabaseImplement
+{
+    public class AbstractMebelDatabase : DbContext
+    {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (optionsBuilder.IsConfigured == false)
+            {
+                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-13EDEJ3\SQLEXPRESS;Initial Catalog=AbstractMebelDatabase;Integrated Security=True;MultipleActiveResultSets=True;");
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+        public virtual DbSet<Zagotovka> Zagotovkas { set; get; }
+        public virtual DbSet<Mebel> Mebels { set; get; }
+        public virtual DbSet<MebelZagotovka> MebelZagotovkas { set; get; }
+        public virtual DbSet<Order> Orders { set; get; }
+    
+    }
+}
