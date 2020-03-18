@@ -9,6 +9,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
 {
     public class MainLogic
     {
+
         private readonly IOrderLogic orderLogic;
         public MainLogic(IOrderLogic orderLogic)
         {
