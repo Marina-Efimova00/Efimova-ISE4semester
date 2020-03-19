@@ -1,5 +1,5 @@
 ﻿using AbstractMebelBusinessLogic.Enums;
-using AbstractShopListImplement.Models;
+using AbstractMebelListImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace AbstractShopFileImplement
+namespace AbstractMebelFileImplement
 {
     public class FileDataListSingleton
     {
@@ -16,16 +16,22 @@ namespace AbstractShopFileImplement
         private readonly string OrderFileName = "Order.xml";
         private readonly string MebelFileName = "Mebel.xml";
         private readonly string MebelZagotovkaFileName = "MebelZagotovka.xml";
+        private readonly string StorageFileName = "Storage.xml";
+        private readonly string StorageZagotovkaFileName = "StorageZagotovka.xml";
         public List<Zagotovka> Zagotovkas { get; set; }
         public List<Order> Orders { get; set; }
         public List<Mebel> Mebels { get; set; }
         public List<MebelZagotovka> MebelZagotovkas { get; set; }
+        public List<Storage> Storages { get; set; }
+        public List<StorageZagotovka> StorageZagotovkas { get; set; }
         private FileDataListSingleton()
         {
             Zagotovkas = LoadZagotovkas();
             Orders = LoadOrders();
             Mebels = LoadMebels();
             MebelZagotovkas = LoadMebelZagotovkas();
+            Storages = LoadStorages();
+            StorageZagotovkas = LoadStorageZagotovkas();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -41,6 +47,8 @@ namespace AbstractShopFileImplement
             SaveOrders();
             SaveMebels();
             SaveMebelZagotovkas();
+            SaveStorages();
+            SaveStorageZagotovkas();
         }
         private List<Zagotovka> LoadZagotovkas()
         {
@@ -106,6 +114,24 @@ namespace AbstractShopFileImplement
             }
             return list;
         }
+        private List<Storage> LoadStorages()
+        {
+            var list = new List<Storage>();
+            if (File.Exists(StorageFileName))
+            {
+                XDocument xDocument = XDocument.Load(StorageFileName);
+                var xElements = xDocument.Root.Elements("Storage").ToList();
+                foreach (var elem in xElements)
+                {
+                    list.Add(new Storage
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        StorageName = elem.Element("StorageName").Value
+                    });
+                }
+            }
+            return list;
+        }
         private List<MebelZagotovka> LoadMebelZagotovkas()
         {
             var list = new List<MebelZagotovka>();
@@ -119,6 +145,26 @@ namespace AbstractShopFileImplement
                     {
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
                         MebelId = Convert.ToInt32(elem.Element("MebelId").Value),
+                        ZagotovkaId = Convert.ToInt32(elem.Element("ZagotovkaId").Value),
+                        Count = Convert.ToInt32(elem.Element("Count").Value)
+                    });
+                }
+            }
+            return list;
+        }
+        private List<StorageZagotovka> LoadStorageZagotovkas()
+        {
+            var list = new List<StorageZagotovka>();
+            if (File.Exists(StorageZagotovkaFileName))
+            {
+                XDocument xDocument = XDocument.Load(StorageZagotovkaFileName);
+                var xElements = xDocument.Root.Elements("StorageZagotovka").ToList();
+                foreach (var elem in xElements)
+                {
+                    list.Add(new StorageZagotovka
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        StorageId = Convert.ToInt32(elem.Element("StorageId").Value),
                         ZagotovkaId = Convert.ToInt32(elem.Element("ZagotovkaId").Value),
                         Count = Convert.ToInt32(elem.Element("Count").Value)
                     });
@@ -177,6 +223,21 @@ namespace AbstractShopFileImplement
                 xDocument.Save(MebelFileName);
             }
         }
+        private void SaveStorages()
+        {
+            if (Storages != null)
+            {
+                var xElement = new XElement("Storages");
+                foreach (var Storage in Storages)
+                {
+                    xElement.Add(new XElement("Storage",
+                    new XAttribute("Id", Storage.Id),
+                    new XElement("StorageName", Storage.StorageName)));
+                }
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(StorageFileName);
+            }
+        }
         private void SaveMebelZagotovkas()
         {
             if (MebelZagotovkas != null)
@@ -192,6 +253,23 @@ namespace AbstractShopFileImplement
                 }
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(MebelZagotovkaFileName);
+            }
+        }
+        private void SaveStorageZagotovkas()
+        {
+            if (StorageZagotovkas != null)
+            {
+                var xElement = new XElement("StorageZagotovkas");
+                foreach (var StorageZagotovka in StorageZagotovkas)
+                {
+                    xElement.Add(new XElement("StorageZagotovka",
+                    new XAttribute("Id", StorageZagotovka.Id),
+                    new XElement("StorageId", StorageZagotovka.StorageId),
+                    new XElement("ZagotovkaId", StorageZagotovka.ZagotovkaId),
+                    new XElement("Count", StorageZagotovka.Count)));
+                }
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(StorageZagotovkaFileName);
             }
         }
     }

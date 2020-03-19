@@ -1,13 +1,13 @@
 ﻿using AbstractMebelBusinessLogic.BindingModels;
 using AbstractMebelBusinessLogic.Interfaces;
 using AbstractMebelBusinessLogic.ViewModels;
-using AbstractShopListImplement.Models;
+using AbstractMebelListImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 
-namespace AbstractShopListImplement.Implements
+namespace AbstractMebelListImplement.Implements
 {
     public class OrderLogic : IOrderLogic
     {

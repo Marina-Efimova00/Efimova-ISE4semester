@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AbstractMebelListImplement.Models
+namespace AbstractMebelFileImplement.Models
 {
-    public class MebelZagotovka
+    public class StorageZagotovka
     {
         public int Id { get; set; }
-        public int MebelId { get; set; }
+        public int StorageId { get; set; }
         public int ZagotovkaId { get; set; }
         public int Count { get; set; }
     }

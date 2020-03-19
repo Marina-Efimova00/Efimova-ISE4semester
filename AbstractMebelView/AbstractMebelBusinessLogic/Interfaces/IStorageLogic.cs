@@ -14,5 +14,7 @@ namespace AbstractMebelBusinessLogic.Interfaces
         void UpdElement(StorageBindingModel model);
         void DelElement(int id);
         void FillStorage(StorageZagotovkaBindingModel model);
+        bool CheckZagotovkasAvailability(int mebelId, int mebelsCount);
+        void RemoveFromStorage(int mebelId, int mebelsCount);
     }
 }

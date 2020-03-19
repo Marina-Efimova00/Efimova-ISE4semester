@@ -4,10 +4,9 @@ using System.Text;
 
 namespace AbstractMebelListImplement.Models
 {
-    public class Mebel
+    public class Storage
     {
         public int Id { get; set; }
-        public string MebelName { get; set; }
-        public decimal Price { get; set; }
+        public string StorageName { get; set; }
     }
 }

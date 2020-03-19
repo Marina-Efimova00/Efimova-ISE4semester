@@ -52,6 +52,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                 DateImplement = DateTime.Now,
                 Status = OrderStatus.Выполняется
             });
+            storageLogic.RemoveFromStorage(order.MebelId, order.Count);
         }
         public void FinishOrder(ChangeStatusBindingModel model)
         {

@@ -1,13 +1,13 @@
 ﻿using AbstractMebelBusinessLogic.BindingModels;
 using AbstractMebelBusinessLogic.Interfaces;
 using AbstractMebelBusinessLogic.ViewModels;
-using AbstractShopListImplement.Models;
+using AbstractMebelListImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AbstractShopFileImplement.Implements
+namespace AbstractMebelFileImplement.Implements
 {
     public class OrderLogic : IOrderLogic
     {
@@ -61,7 +61,8 @@ namespace AbstractShopFileImplement.Implements
             .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,
-                MebelName = GetMebelName(rec.MebelId),
+                MebelId = rec.MebelId,
+                MebelName = source.Mebels.FirstOrDefault(x => x.Id == rec.MebelId)?.MebelName,
                 Count = rec.Count,
                 Sum = rec.Sum,
                 Status = rec.Status,
@@ -69,14 +70,6 @@ namespace AbstractShopFileImplement.Implements
                 DateImplement = rec.DateImplement
             })
             .ToList();
-        }
-
-        private string GetMebelName(int id)
-        {
-            string name = "";
-            var mebel = source.Mebels.FirstOrDefault(x => x.Id == id);
-            name = mebel != null ? mebel.MebelName : "";
-            return name;
         }
     }
 }
