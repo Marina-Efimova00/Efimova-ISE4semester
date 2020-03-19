@@ -61,11 +61,29 @@
     <Compile Include="FormCreateOrder.Designer.cs">
       <DependentUpon>FormCreateOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormFillStorage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFillStorage.Designer.cs">
+      <DependentUpon>FormFillStorage.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStorage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStorage.Designer.cs">
+      <DependentUpon>FormStorage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStorages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStorages.Designer.cs">
+      <DependentUpon>FormStorages.cs</DependentUpon>
     </Compile>
     <Compile Include="FormZagotovka.cs">
       <SubType>Form</SubType>
@@ -102,8 +120,17 @@
     <EmbeddedResource Include="FormCreateOrder.resx">
       <DependentUpon>FormCreateOrder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFillStorage.resx">
+      <DependentUpon>FormFillStorage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStorage.resx">
+      <DependentUpon>FormStorage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStorages.resx">
+      <DependentUpon>FormStorages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormZagotovka.resx">
       <DependentUpon>FormZagotovka.cs</DependentUpon>
@@ -148,13 +175,9 @@
       <Project>{23b7a023-1cff-47f4-97f1-eb24e0041597}</Project>
       <Name>AbstractMebelBusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AbstractMebelFileImplement\AbstractMebelFileImplement.csproj">
-      <Project>{73a812c8-829c-4263-b211-5f756151ac13}</Project>
-      <Name>AbstractMebelFileImplement</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AbstractMebelListImplement\AbstractMebelListImplement.csproj">
-      <Project>{1d02614c-b3c7-4c29-b93f-7fcbc1ac9751}</Project>
-      <Name>AbstractMebelListImplement</Name>
+    <ProjectReference Include="..\AbstractShopListImplement\AbstractShopListImplement.csproj">
+      <Project>{e12ac114-f645-4d5c-9644-33b925654bfe}</Project>
+      <Name>AbstractShopListImplement</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
