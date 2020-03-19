@@ -1,5 +1,5 @@
 ﻿using AbstractMebelBusinessLogic.Enums;
-using AbstractShopListImplement.Models;
+using AbstractMebelListImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace AbstractShopFileImplement
+namespace AbstractMebelFileImplement
 {
     public class FileDataListSingleton
     {

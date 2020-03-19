@@ -1,9 +1,9 @@
-﻿using AbstractShopListImplement.Models;
+﻿using AbstractMebelListImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AbstractShopListImplement
+namespace AbstractMebelListImplement
 {
     public class DataListSingleton
     {

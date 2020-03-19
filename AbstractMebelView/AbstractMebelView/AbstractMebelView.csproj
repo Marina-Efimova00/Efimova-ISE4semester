@@ -153,8 +153,8 @@
       <Project>{73a812c8-829c-4263-b211-5f756151ac13}</Project>
       <Name>AbstractMebelFileImplement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AbstractMebelListImplement\AbstractMebelListImplement.csproj">
-      <Project>{1d02614c-b3c7-4c29-b93f-7fcbc1ac9751}</Project>
+
+
     <ProjectReference Include="..\AbstractMebelListImplement\AbstractMebelListImplement.csproj">
       <Project>{7d8ec1af-dde4-4119-9bc4-f378159b5b77}</Project>
 

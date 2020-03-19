@@ -1,6 +1,6 @@
 ﻿using AbstractMebelBusinessLogic.BusinessLogics;
 using AbstractMebelBusinessLogic.Interfaces;
-using AbstractShopFileImplement.Implements;
+using AbstractMebelFileImplement.Implements;
 using System;
 using System.Collections.Generic;
 using System.Linq;

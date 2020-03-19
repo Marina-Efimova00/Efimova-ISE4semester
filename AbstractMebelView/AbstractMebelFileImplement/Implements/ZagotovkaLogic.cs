@@ -1,13 +1,13 @@
 ﻿using AbstractMebelBusinessLogic.BindingModels;
 using AbstractMebelBusinessLogic.Interfaces;
 using AbstractMebelBusinessLogic.ViewModels;
-using AbstractShopListImplement.Models;
+using AbstractMebelListImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AbstractShopFileImplement.Implements
+namespace AbstractMebelFileImplement.Implements
 {
     public class ZagotovkaLogic : IZagotovkaLogic
     {
