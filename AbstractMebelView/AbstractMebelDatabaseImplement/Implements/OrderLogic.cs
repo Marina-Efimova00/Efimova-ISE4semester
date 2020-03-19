@@ -2,6 +2,7 @@
 using AbstractMebelBusinessLogic.Interfaces;
 using AbstractMebelBusinessLogic.ViewModels;
 using AbstractMebelDatabaseImplement.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +62,7 @@ model.Id);
             using (var context = new AbstractMebelDatabase())
             {
                 return context.Orders
+            .Include(rec => rec.Mebel)
             .Where(rec => model == null || rec.Id == model.Id)
             .Select(rec => new OrderViewModel
             {
