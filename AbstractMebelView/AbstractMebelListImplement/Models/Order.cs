@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AbstractShopListImplement.Models
+namespace AbstractMebelListImplement.Models
 {
     public class Order
     {
