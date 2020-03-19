@@ -7,9 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractMebelView", "Abstra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractMebelBusinessLogic", "AbstractMebelBusinessLogic\AbstractMebelBusinessLogic.csproj", "{23B7A023-1CFF-47F4-97F1-EB24E0041597}"
 EndProject
+
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractMebelListImplement", "AbstractMebelListImplement\AbstractMebelListImplement.csproj", "{1D02614C-B3C7-4C29-B93F-7FCBC1AC9751}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractMebelFileImplement", "AbstractMebelFileImplement\AbstractMebelFileImplement.csproj", "{73A812C8-829C-4263-B211-5F756151AC13}"
+
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,7 @@ Global
 		{23B7A023-1CFF-47F4-97F1-EB24E0041597}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23B7A023-1CFF-47F4-97F1-EB24E0041597}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23B7A023-1CFF-47F4-97F1-EB24E0041597}.Release|Any CPU.Build.0 = Release|Any CPU
+
 		{1D02614C-B3C7-4C29-B93F-7FCBC1AC9751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1D02614C-B3C7-4C29-B93F-7FCBC1AC9751}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D02614C-B3C7-4C29-B93F-7FCBC1AC9751}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +36,12 @@ Global
 		{73A812C8-829C-4263-B211-5F756151AC13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73A812C8-829C-4263-B211-5F756151AC13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73A812C8-829C-4263-B211-5F756151AC13}.Release|Any CPU.Build.0 = Release|Any CPU
+
+		{7D8EC1AF-DDE4-4119-9BC4-F378159B5B77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D8EC1AF-DDE4-4119-9BC4-F378159B5B77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D8EC1AF-DDE4-4119-9BC4-F378159B5B77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D8EC1AF-DDE4-4119-9BC4-F378159B5B77}.Release|Any CPU.Build.0 = Release|Any CPU
+
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
