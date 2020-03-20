@@ -249,16 +249,13 @@
       <Project>{3acc1c52-986c-4f05-8297-b1404de016a3}</Project>
       <Name>AbstractMebelFileImplement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AbstractMebelListImplement\AbstractMebelListImplement.csproj">
-      <Project>{2f755e6d-e1df-4357-81d9-73632c4d66c2}</Project>
 
 
     <ProjectReference Include="..\AbstractMebelFileImplement\AbstractMebelFileImplement.csproj">
       <Project>{73a812c8-829c-4263-b211-5f756151ac13}</Project>
       <Name>AbstractMebelFileImplement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AbstractMebelListImplement\AbstractMebelListImplement.csproj">
-      <Project>{1d02614c-b3c7-4c29-b93f-7fcbc1ac9751}</Project>
+    
     <ProjectReference Include="..\AbstractMebelListImplement\AbstractMebelListImplement.csproj">
       <Project>{7d8ec1af-dde4-4119-9bc4-f378159b5b77}</Project>
 
