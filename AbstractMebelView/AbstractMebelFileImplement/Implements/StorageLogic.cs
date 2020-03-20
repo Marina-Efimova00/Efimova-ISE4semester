@@ -134,11 +134,9 @@ namespace AbstractMebelFileImplement.Implements
             {
                 int count = 0;
                 var storageZagotovkas = source.StorageZagotovkas.FindAll(x => x.ZagotovkaId == elem.ZagotovkaId);
-                foreach (var rec in storageZagotovkas)
-                {
-                    count += rec.Count;
-                }
-                if (count < elem.Count * mebelsCount) result = false;
+                count = source.StorageZagotovkas.Sum(x => x.Count);
+                if (count < elem.Count * mebelsCount)
+                    return false;
             }
             return result;
         }
