@@ -127,18 +127,15 @@ namespace AbstractMebelFileImplement.Implements
 
         public bool CheckZagotovkasAvailability(int mebelId, int mebelsCount)
         {
-            bool result = true;
             var mebelZagotovkas = source.MebelZagotovkas.Where(x => x.MebelId == mebelId);
-            if (mebelZagotovkas.Count() == 0) return false;
+            if (mebelZagotovkas.Count() == 0)
+                return false;
             foreach (var elem in mebelZagotovkas)
             {
-                int count = 0;
-                var storageZagotovkas = source.StorageZagotovkas.FindAll(x => x.ZagotovkaId == elem.ZagotovkaId);
-                count = source.StorageZagotovkas.Sum(x => x.Count);
-                if (count < elem.Count * mebelsCount)
-                    return false;
+                int count = source.StorageZagotovkas.FindAll(x => x.ZagotovkaId == elem.ZagotovkaId).Sum(rec => rec.Count);
+                if (count < elem.Count * mebelsCount) return false;
             }
-            return result;
+            return true;
         }
 
         public void RemoveFromStorage(int mebelId, int mebelsCount)
