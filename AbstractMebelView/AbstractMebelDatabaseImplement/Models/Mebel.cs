@@ -8,7 +8,6 @@ namespace AbstractMebelDatabaseImplement.Models
 {
     public class Mebel
     {
-
         public int Id { get; set; }
 
         [Required]
