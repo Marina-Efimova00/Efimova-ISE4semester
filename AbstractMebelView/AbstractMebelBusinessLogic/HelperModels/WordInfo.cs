@@ -9,6 +9,6 @@ namespace AbstractMebelBusinessLogic.HelperModels
     {
         public string FileName { get; set; }
         public string Title { get; set; }
-        public List<ZagotovkaViewModel> Zagotovkas { get; set; }
+        public List<MebelViewModel> Mebels { get; set; }
     }
 }

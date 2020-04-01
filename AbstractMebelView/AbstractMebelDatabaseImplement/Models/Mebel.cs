@@ -7,7 +7,6 @@ namespace AbstractMebelDatabaseImplement.Models
 {
     public class Mebel
     {
-
         public int Id { get; set; }
 
         [Required]
@@ -15,8 +14,6 @@ namespace AbstractMebelDatabaseImplement.Models
 
         [Required]
         public decimal Price { get; set; }
-
-        public virtual MebelZagotovka MebelZagotovka { get; set; }
-        public virtual List<Order> Orders { get; set; }
+        public virtual List<MebelZagotovka> MebelZagotovkas { get; set; }
     }
 }

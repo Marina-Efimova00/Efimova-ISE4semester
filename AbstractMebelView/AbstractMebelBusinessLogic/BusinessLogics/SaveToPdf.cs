@@ -6,9 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AbstractMebelBusinessLogic.BusinessLogic
+namespace AbstractMebelBusinessLogic.BusinessLogics
 {
-    class SaveToPdf
+    static class SaveToPdf
     {
         public static void CreateDoc(PdfInfo info)
         {
@@ -19,12 +19,10 @@ namespace AbstractMebelBusinessLogic.BusinessLogic
             paragraph.Format.SpaceAfter = "1cm";
             paragraph.Format.Alignment = ParagraphAlignment.Center;
             paragraph.Style = "NormalTitle";
-            paragraph = section.AddParagraph($"с {info.DateFrom.ToShortDateString()} по { info.DateTo.ToShortDateString()} ");
-            paragraph.Format.SpaceAfter = "1cm";
-            paragraph.Format.Alignment = ParagraphAlignment.Center;
             paragraph.Style = "Normal";
             var table = document.LastSection.AddTable();
-            List<string> columns = new List<string> { "3cm", "6cm", "3cm", "2cm", "3cm"};
+            List<string> columns = new List<string> { "6cm", "6cm", "6cm" };
+
             foreach (var elem in columns)
             {
                 table.AddColumn(elem);
@@ -32,24 +30,26 @@ namespace AbstractMebelBusinessLogic.BusinessLogic
             CreateRow(new PdfRowParameters
             {
                 Table = table,
-                Texts = new List<string> { "Дата заказа", "Изделие", "Количество",
-"Сумма", "Статус" },
+                Texts = new List<string> { "Закуска", "Продукт", "Количество" },
                 Style = "NormalTitle",
                 ParagraphAlignment = ParagraphAlignment.Center
             });
-            foreach (var order in info.Orders)
+            foreach (var mb in info.MebelZagotovkas)
             {
                 CreateRow(new PdfRowParameters
                 {
                     Table = table,
-                    Texts = new List<string> { order.DateCreate.ToShortDateString(),
-order.MebelName, order.Count.ToString(), order.Sum.ToString(), order.Status.ToString()
-},
+                    Texts = new List<string>
+                    {
+                        mb.MebelName,
+                        mb.ZagotovkaName,
+                        mb.Count.ToString()
+                    },
                     Style = "Normal",
                     ParagraphAlignment = ParagraphAlignment.Left
                 });
             }
-           PdfDocumentRenderer renderer = new PdfDocumentRenderer(true,PdfSharp.Pdf.PdfFontEmbedding.Always)
+            PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always)
             {
                 Document = document
             };
@@ -64,7 +64,6 @@ order.MebelName, order.Count.ToString(), order.Sum.ToString(), order.Status.ToSt
             style = document.Styles.AddStyle("NormalTitle", "Normal");
             style.Font.Bold = true;
         }
-
         private static void CreateRow(PdfRowParameters rowParameters)
         {
             Row row = rowParameters.Table.AddRow();

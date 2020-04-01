@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AbstractMebelBusinessLogic.BusinessLogic
+namespace AbstractMebelBusinessLogic.BusinessLogics
 {
     static class SaveToExcel
     {
@@ -53,29 +53,38 @@ namespace AbstractMebelBusinessLogic.BusinessLogic
                     ShareStringPart = shareStringPart,
                     ColumnName = "A",
                     RowIndex = 1,
-                    Text = info.Title,
-                    StyleIndex = 2U
+                    Text = info.Title + " с " + info.DateFrom.ToShortDateString() + " по " + info.DateTo.ToShortDateString(),
+                    StyleIndex = 1U
                 });
                 MergeCells(new ExcelMergeParameters
                 {
                     Worksheet = worksheetPart.Worksheet,
                     CellFromName = "A1",
-                    CellToName = "C1"
+                    CellToName = "E1"
                 });
                 uint rowIndex = 2;
-                foreach (var mz in info.MebelZagotovkas)
+                List<DateTime> dates = new List<DateTime>();
+                foreach (var order in info.Orders)
                 {
+                    if (!dates.Contains(order.DateCreate.Date))
+                    {
+                        dates.Add(order.DateCreate.Date);
+                    }
+                }
+                foreach (var date in dates)
+                {
+                    decimal dateSum = 0;
                     InsertCellInWorksheet(new ExcelCellParameters
                     {
                         Worksheet = worksheetPart.Worksheet,
                         ShareStringPart = shareStringPart,
                         ColumnName = "A",
                         RowIndex = rowIndex,
-                        Text = mz.ZagotovkaName,
+                        Text = date.Date.ToShortDateString(),
                         StyleIndex = 0U
                     });
                     rowIndex++;
-                    foreach (var mebel in mz.Mebels)
+                    foreach (var order in info.Orders.Where(rec => rec.DateCreate.Date == date.Date))
                     {
                         InsertCellInWorksheet(new ExcelCellParameters
                         {
@@ -83,7 +92,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogic
                             ShareStringPart = shareStringPart,
                             ColumnName = "B",
                             RowIndex = rowIndex,
-                            Text = mebel.Item1,
+                            Text = order.MebelName,
                             StyleIndex = 1U
                         });
                         InsertCellInWorksheet(new ExcelCellParameters
@@ -92,18 +101,28 @@ namespace AbstractMebelBusinessLogic.BusinessLogic
                             ShareStringPart = shareStringPart,
                             ColumnName = "C",
                             RowIndex = rowIndex,
-                            Text = mebel.Item2.ToString(),
+                            Text = order.Sum.ToString(),
                             StyleIndex = 1U
                         });
+                        dateSum += order.Sum;
                         rowIndex++;
                     }
                     InsertCellInWorksheet(new ExcelCellParameters
                     {
                         Worksheet = worksheetPart.Worksheet,
                         ShareStringPart = shareStringPart,
+                        ColumnName = "A",
+                        RowIndex = rowIndex,
+                        Text = "Итого",
+                        StyleIndex = 0U
+                    });
+                    InsertCellInWorksheet(new ExcelCellParameters
+                    {
+                        Worksheet = worksheetPart.Worksheet,
+                        ShareStringPart = shareStringPart,
                         ColumnName = "C",
                         RowIndex = rowIndex,
-                        Text = mz.TotalCount.ToString(),
+                        Text = dateSum.ToString(),
                         StyleIndex = 0U
                     });
                     rowIndex++;
@@ -111,6 +130,10 @@ namespace AbstractMebelBusinessLogic.BusinessLogic
                 workbookpart.Workbook.Save();
             }
         }
+        /// <summary>
+        /// Настройка стилей для файла
+        /// </summary>
+        /// <param name="workbookpart"></param>
         private static void CreateStyles(WorkbookPart workbookpart)
         {
             WorkbookStylesPart sp = workbookpart.AddNewPart<WorkbookStylesPart>();
@@ -242,7 +265,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogic
            VerticalAlignmentValues.Center,
                     WrapText = true,
                     Horizontal =
-           HorizontalAlignmentValues.Center
+    HorizontalAlignmentValues.Center
                 },
                 ApplyFont = true
             };
@@ -307,6 +330,14 @@ namespace AbstractMebelBusinessLogic.BusinessLogic
             sp.Stylesheet.Append(tableStyles);
             sp.Stylesheet.Append(stylesheetExtensionList);
         }
+        /// <summary>
+        /// Добааляем новую ячейку в лист
+        /// </summary>
+        /// <param name="worksheet"></param>
+        /// <param name="columnName"></param>
+        /// <param name="rowIndex"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
         private static void InsertCellInWorksheet(ExcelCellParameters cellParameters)
         {
             SheetData sheetData = cellParameters.Worksheet.GetFirstChild<SheetData>();
@@ -316,7 +347,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogic
            cellParameters.RowIndex).Count() != 0)
             {
                 row = sheetData.Elements<Row>().Where(r => r.RowIndex ==
-cellParameters.RowIndex).First();
+    cellParameters.RowIndex).First();
             }
             else
             {
