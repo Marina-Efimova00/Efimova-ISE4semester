@@ -43,21 +43,24 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
             Console.WriteLine($"Take order with id {order.Id} and mebel id {order.MebelId}");
-            if (!storageLogic.CheckZagotovkasAvailability(order.MebelId, order.Count))
+            try
             {
-                throw new Exception("На складах не хватает заготовок");
+                storageLogic.RemoveFromStorage(order.MebelId, order.Count);
+                orderLogic.CreateOrUpdate(new OrderBindingModel
+                {
+                    Id = order.Id,
+                    MebelId = order.MebelId,
+                    Count = order.Count,
+                    Sum = order.Sum,
+                    DateCreate = order.DateCreate,
+                    DateImplement = DateTime.Now,
+                    Status = OrderStatus.Выполняется
+                });
             }
-            orderLogic.CreateOrUpdate(new OrderBindingModel
+            catch (Exception ex)
             {
-                Id = order.Id,
-                MebelId = order.MebelId,
-                Count = order.Count,
-                Sum = order.Sum,
-                DateCreate = order.DateCreate,
-                DateImplement = DateTime.Now,
-                Status = OrderStatus.Выполняется
-            });
-            storageLogic.RemoveFromStorage(order.MebelId, order.Count);
+                throw ex;
+            }
         }
         public void FinishOrder(ChangeStatusBindingModel model)
         {
