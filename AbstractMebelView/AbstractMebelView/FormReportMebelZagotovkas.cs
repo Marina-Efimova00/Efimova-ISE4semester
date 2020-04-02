@@ -55,10 +55,5 @@ namespace AbstractMebelView
                 }
             }
         }
-
-        private void FormReportMebelZagotovkas_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -30,7 +30,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
             CreateRow(new PdfRowParameters
             {
                 Table = table,
-                Texts = new List<string> { "Закуска", "Продукт", "Количество" },
+                Texts = new List<string> { "Заготовка", "Мебель", "Количество" },
                 Style = "NormalTitle",
                 ParagraphAlignment = ParagraphAlignment.Center
             });

@@ -72,7 +72,6 @@
             this.Controls.Add(this.buttonMake);
             this.Name = "FormReportMebelZagotovkas";
             this.Text = "Отчет по мебели с заготовками";
-            this.Load += new System.EventHandler(this.FormReportMebelZagotovkas_Load);
             this.ResumeLayout(false);
 
         }
