@@ -41,8 +41,8 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                     Table = table,
                     Texts = new List<string>
                     {
-                        mb.MebelName,
                         mb.ZagotovkaName,
+                        mb.MebelName,
                         mb.Count.ToString()
                     },
                     Style = "Normal",
