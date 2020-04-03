@@ -87,7 +87,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
             SaveToPdf.CreateDoc(new PdfInfo
             {
                 FileName = model.FileName,
-                Title = "Список заказов",
+                Title = "Список заготовок мебели",
                 MebelZagotovkas = GetMebelZagotovka(),
             });
         }
