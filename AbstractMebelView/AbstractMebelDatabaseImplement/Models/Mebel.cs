@@ -15,7 +15,7 @@ namespace AbstractMebelDatabaseImplement.Models
 
         [Required]
         public decimal Price { get; set; }
-        [ForeignKey("MebelId")]
+
         public virtual List<MebelZagotovka> MebelZagotovkas { get; set; }
     }
 }
