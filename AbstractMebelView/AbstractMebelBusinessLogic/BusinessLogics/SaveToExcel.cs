@@ -53,7 +53,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                     ShareStringPart = shareStringPart,
                     ColumnName = "A",
                     RowIndex = 1,
-                    Text = info.Title + " с " + info.DateFrom.ToShortDateString() + " по " + info.DateTo.ToShortDateString(),
+                    Text = info.Title, 
                     StyleIndex = 1U
                 });
                 MergeCells(new ExcelMergeParameters
@@ -63,15 +63,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                     CellToName = "E1"
                 });
                 uint rowIndex = 2;
-                List<DateTime> dates = new List<DateTime>();
-                foreach (var order in info.Orders)
-                {
-                    if (!dates.Contains(order.DateCreate.Date))
-                    {
-                        dates.Add(order.DateCreate.Date);
-                    }
-                }
-                foreach (var date in dates)
+                foreach (var date in info.Orders)
                 {
                     decimal dateSum = 0;
                     InsertCellInWorksheet(new ExcelCellParameters
@@ -80,11 +72,11 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                         ShareStringPart = shareStringPart,
                         ColumnName = "A",
                         RowIndex = rowIndex,
-                        Text = date.Date.ToShortDateString(),
+                        Text = date.Key.ToShortDateString(),
                         StyleIndex = 0U
                     });
                     rowIndex++;
-                    foreach (var order in info.Orders.Where(rec => rec.DateCreate.Date == date.Date))
+                    foreach (var order in date)
                     {
                         InsertCellInWorksheet(new ExcelCellParameters
                         {
