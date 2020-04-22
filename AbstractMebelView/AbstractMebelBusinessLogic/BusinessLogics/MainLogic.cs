@@ -11,9 +11,11 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
     public class MainLogic
     {
         private readonly IOrderLogic orderLogic;
-        public MainLogic(IOrderLogic orderLogic)
+        private readonly IStorageLogic storageLogic;
+        public MainLogic(IOrderLogic orderLogic, IStorageLogic storageLogic)
         {
             this.orderLogic = orderLogic;
+            this.storageLogic = storageLogic;
         }
         public void CreateOrder(CreateOrderBindingModel model)
         {
@@ -40,6 +42,11 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
+            Console.WriteLine($"Take order with id {order.Id} and mebel id {order.MebelId}");
+            if (!storageLogic.CheckZagotovkasAvailability(order.MebelId, order.Count))
+            {
+                throw new Exception("На складах не хватает заготовок");
+            }
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
@@ -50,6 +57,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                 DateImplement = DateTime.Now,
                 Status = OrderStatus.Выполняется
             });
+            storageLogic.RemoveFromStorage(order.MebelId, order.Count);
         }
         public void FinishOrder(ChangeStatusBindingModel model)
         {
@@ -100,6 +108,10 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Оплачен
             });
+        }
+        public void FillStorage(StorageZagotovkaBindingModel model)
+        {
+            storageLogic.FillStorage(model);
         }
     }
 }
