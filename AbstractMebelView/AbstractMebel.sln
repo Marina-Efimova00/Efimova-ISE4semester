@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.902
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractMebelView", "AbstractMebelView\AbstractMebelView.csproj", "{FA2F7CA6-473E-4986-AA6F-D2FB667B613D}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractMebelListImplement", "AbstractMebelListImplement\AbstractMebelListImplement.csproj", "{2F755E6D-E1DF-4357-81D9-73632C4D66C2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractMebelFileImplement", "AbstractMebelFileImplement\AbstractMebelFileImplement.csproj", "{3ACC1C52-986C-4F05-8297-B1404DE016A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractMebelRestApi", "AbstractMebelRestApi\AbstractMebelRestApi.csproj", "{F787AACA-B352-41A0-9828-F4223281F47A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{3ACC1C52-986C-4F05-8297-B1404DE016A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3ACC1C52-986C-4F05-8297-B1404DE016A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3ACC1C52-986C-4F05-8297-B1404DE016A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F787AACA-B352-41A0-9828-F4223281F47A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F787AACA-B352-41A0-9828-F4223281F47A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F787AACA-B352-41A0-9828-F4223281F47A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F787AACA-B352-41A0-9828-F4223281F47A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -20,6 +20,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 MebelId = model.MebelId,
+                ClientId = model.ClientId,
                 Count = model.Count,
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
@@ -30,8 +31,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
         {
             var order = orderLogic.Read(new OrderBindingModel
             {
-                Id = model.OrderId
-            })?[0];
+                Id = model.OrderId })?[0];
             if (order == null)
             {
                 throw new Exception("Не найден заказ");
@@ -43,6 +43,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 MebelId = order.MebelId,
                 Count = order.Count,
                 Sum = order.Sum,
@@ -55,8 +56,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
         {
             var order = orderLogic.Read(new OrderBindingModel
             {
-                Id = model.OrderId
-            })?[0];
+                Id = model.OrderId})?[0];
             if (order == null)
             {
                 throw new Exception("Не найден заказ");
@@ -68,6 +68,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 MebelId = order.MebelId,
                 Count = order.Count,
                 Sum = order.Sum,
@@ -80,8 +81,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
         {
             var order = orderLogic.Read(new OrderBindingModel
             {
-                Id = model.OrderId
-            })?[0];
+                Id = model.OrderId})?[0];
             if (order == null)
             {
                 throw new Exception("Не найден заказ");
@@ -93,6 +93,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 MebelId = order.MebelId,
                 Count = order.Count,
                 Sum = order.Sum,

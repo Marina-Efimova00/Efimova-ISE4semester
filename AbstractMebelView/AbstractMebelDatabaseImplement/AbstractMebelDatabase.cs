@@ -20,5 +20,6 @@ namespace AbstractMebelDatabaseImplement
         public virtual DbSet<Mebel> Mebels { set; get; }
         public virtual DbSet<MebelZagotovka> MebelZagotovkas { set; get; }
         public virtual DbSet<Order> Orders { set; get; }
+        public virtual DbSet<Client> Clients { set; get; }
     }
 }
