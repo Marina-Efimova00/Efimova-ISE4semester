@@ -36,6 +36,7 @@ namespace AbstractMebelFileImplement.Implements
                 source.Orders.Add(element);
             }
             element.MebelId = model.MebelId == 0 ? element.MebelId : model.MebelId;
+            element.ClientId = model.ClientId == null ? element.ClientId : (int)model.ClientId;
             element.ImplementerId = model.ImplementerId;
             element.Count = model.Count;
             element.Sum = model.Sum;
@@ -59,16 +60,15 @@ namespace AbstractMebelFileImplement.Implements
         public List<OrderViewModel> Read(OrderBindingModel model)
         {
             return source.Orders
-             .Where(
-                 rec => model == null
-                 || rec.Id == model.Id
-                 || model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo
-                 || model.FreeOrders.HasValue && model.FreeOrders.Value && !rec.ImplementerId.HasValue
-                 || model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Выполняется
-            )
+             .Where(rec => model == null || rec.Id == model.Id || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
+            || (model.ClientId.HasValue && rec.ClientId == model.ClientId)
+            || model.FreeOrders.HasValue && model.FreeOrders.Value && !rec.ImplementerId.HasValue
+            || model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Выполняется)
             .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,
+                ClientId = rec.ClientId,
+                ClientFIO = source.Clients.FirstOrDefault(recC => recC.Id == rec.ClientId)?.ClientFIO,
                 ImplementerId = rec.ImplementerId,
                 ImplementerFIO = source.Implementers.FirstOrDefault(recC => recC.Id == rec.ImplementerId)?.ImplementerFIO,
                 MebelName = GetMebelName(rec.MebelId),
