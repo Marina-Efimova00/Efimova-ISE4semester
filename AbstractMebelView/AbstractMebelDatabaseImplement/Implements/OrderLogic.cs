@@ -33,13 +33,13 @@ namespace AbstractMebelDatabaseImplement.Implements
                     context.Orders.Add(element);
                 }
                 element.MebelId = model.MebelId == 0 ? element.MebelId : model.MebelId;
-                element.ClientId = model.ClientId == null ? element.ClientId : (int)model.ClientId;
-                element.ImplementerId = model.ImplementerId;
                 element.Count = model.Count;
-                element.Sum = model.Sum;
-                element.Status = model.Status;
                 element.DateCreate = model.DateCreate;
                 element.DateImplement = model.DateImplement;
+                element.ClientId = model.ClientId.Value;
+                element.ImplementerId = model.ImplementerId;
+                element.Status = model.Status;
+                element.Sum = model.Sum;
                 context.SaveChanges();
             }
         }
@@ -72,9 +72,6 @@ namespace AbstractMebelDatabaseImplement.Implements
                    || model.FreeOrders.HasValue && model.FreeOrders.Value && !rec.ImplementerId.HasValue
                    || model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Выполняется
                )
-               .Include(rec => rec.Mebel)
-               .Include(rec => rec.Client)
-               .Include(rec => rec.Implementer)
                .Select(rec => new OrderViewModel
                {
                     Id = rec.Id,
