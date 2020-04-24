@@ -11,6 +11,7 @@ namespace AbstractMebelDatabaseImplement.Models
         public int Id { get; set; }
         public int ClientId { get; set; }
         public int MebelId { get; set; }
+        public int? ImplementerId { get; set; }
         [Required]
         public int Count { get; set; }
         [Required]
@@ -22,5 +23,6 @@ namespace AbstractMebelDatabaseImplement.Models
         public DateTime? DateImplement { get; set; }
         public virtual Mebel Mebel { get; set; }
         public Client Client { get; set; }
+        public Implementer Implementer { get; set; }
     }
 }
