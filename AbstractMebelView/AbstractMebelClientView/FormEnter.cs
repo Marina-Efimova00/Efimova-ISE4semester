@@ -26,13 +26,12 @@ namespace AbstractMebelClientView
         private void ButtonLogin_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(textBoxEmail.Text) &&
-           !string.IsNullOrEmpty(textBoxPassword.Text))
+            !string.IsNullOrEmpty(textBoxPassword.Text))
             {
                 try
                 {
-                    Program.Client =
-                   APIClient.GetRequest<ClientViewModel>($"api/client/login?login={textBoxEmail.Text}&password ={ textBoxPassword.Text}");
-                Close();
+                    Program.Client = APIClient.GetRequest<ClientViewModel>($"api/client/login?login={textBoxEmail.Text}&password={ textBoxPassword.Text}");
+                    Close();
                 }
                 catch (Exception ex)
                 {
