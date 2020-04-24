@@ -21,7 +21,7 @@ namespace AbstractMebelRestApi.Controllers
         }
         [HttpGet]
         public ClientViewModel Login(string login, string password) => _logic.Read(new ClientBindingModel
-        {
+        {                               
             Email = login,
             Password = password
         })?[0];

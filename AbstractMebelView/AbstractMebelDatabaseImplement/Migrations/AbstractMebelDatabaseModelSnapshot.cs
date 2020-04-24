@@ -164,7 +164,7 @@ namespace AbstractMebelDatabaseImplement.Migrations
                         .IsRequired();
 
                     b.HasOne("AbstractMebelDatabaseImplement.Models.Mebel", "Mebel")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("MebelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

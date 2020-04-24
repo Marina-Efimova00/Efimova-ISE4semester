@@ -1,47 +1,30 @@
 ﻿using AbstractMebelBusinessLogic.BindingModels;
-using AbstractMebelBusinessLogic.BusinessLogics;
-using AbstractMebelBusinessLogic.Interfaces;
 using AbstractMebelBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
-namespace AbstractMebelView
+namespace AbstractMebelClientView
 {
     public partial class FormCreateOrder : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IMebelLogic logicP;
-        private readonly IClientLogic logicC;
-        private readonly MainLogic logicM;
-        public FormCreateOrder(IMebelLogic logicP, IClientLogic logicC, MainLogic logicM)
+        public FormCreateOrder()
         {
             InitializeComponent();
-            this.logicP = logicP;
-            this.logicC = logicC;
-            this.logicM = logicM;
         }
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
             try
             {
-                var list = logicP.Read(null);
-                comboBoxMebel.DataSource = list;
                 comboBoxMebel.DisplayMember = "MebelName";
                 comboBoxMebel.ValueMember = "Id";
-                var listC = logicC.Read(null);
-                comboBoxClient.DisplayMember = "ClientFIO";
-                comboBoxClient.ValueMember = "Id";
-                comboBoxClient.DataSource = listC;
-                comboBoxClient.SelectedItem = null;
+                comboBoxMebel.DataSource =
+               APIClient.GetRequest<List<MebelViewModel>>("api/main/getMebellist");
+                comboBoxMebel.SelectedItem = null;
             }
             catch (Exception ex)
             {
@@ -57,9 +40,10 @@ namespace AbstractMebelView
                 try
                 {
                     int id = Convert.ToInt32(comboBoxMebel.SelectedValue);
-                    MebelViewModel Mebel = logicP.Read(new MebelBindingModel{ Id = id })?[0];
+                    MebelViewModel mebel =
+    APIClient.GetRequest<MebelViewModel>($"api/main/getMebel?MebelId={id}");
                     int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * Mebel.Price).ToString();
+                    textBoxSum.Text = (count * mebel.Price).ToString();
                 }
                 catch (Exception ex)
                 {
@@ -68,15 +52,15 @@ namespace AbstractMebelView
                 }
             }
         }
-        private void textBoxCount_TextChanged(object sender, EventArgs e)
+        private void TextBoxCount_TextChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
-        private void comboBoxMebel_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxMebel_SelectedIndexChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
-        private void buttonSave_Click(object sender, EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxCount.Text))
             {
@@ -92,15 +76,15 @@ namespace AbstractMebelView
             }
             try
             {
-                logicM.CreateOrder(new CreateOrderBindingModel
+                APIClient.PostRequest("api/main/createorder", new CreateOrderBindingModel
                 {
+                    ClientId = Program.Client.Id,
                     MebelId = Convert.ToInt32(comboBoxMebel.SelectedValue),
-                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
                 });
-                MessageBox.Show("Сохранение прошло успешно", "Сообщение",
-               MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Заказ создан", "Сообщение", MessageBoxButtons.OK,
+               MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -110,10 +94,5 @@ namespace AbstractMebelView
                MessageBoxIcon.Error);
             }
         }
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-    } 
+    }
 }

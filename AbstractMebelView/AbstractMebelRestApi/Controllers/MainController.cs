@@ -25,10 +25,10 @@ namespace AbstractMebelRestApi.Controllers
             _main = main;
         }
         [HttpGet]
-        public List<MebelModel> GetSnackList() => _mebel.Read(null)?.Select(rec =>
+        public List<MebelModel> GetMebelList() => _mebel.Read(null)?.Select(rec =>
       Convert(rec)).ToList();
         [HttpGet]
-        public MebelModel GetSnack(int MebelId) => Convert(_mebel.Read(new
+        public MebelModel GetMebel(int MebelId) => Convert(_mebel.Read(new
        MebelBindingModel
         { Id = MebelId })?[0]);
         [HttpGet]
