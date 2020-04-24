@@ -16,16 +16,19 @@ namespace AbstractMebelFileImplement
         private readonly string OrderFileName = "Order.xml";
         private readonly string MebelFileName = "Mebel.xml";
         private readonly string MebelZagotovkaFileName = "MebelZagotovka.xml";
+        private readonly string ClientFileName = "Client.xml";
         public List<Zagotovka> Zagotovkas { get; set; }
         public List<Order> Orders { get; set; }
         public List<Mebel> Mebels { get; set; }
         public List<MebelZagotovka> MebelZagotovkas { get; set; }
+        public List<Client> Clients { get; set; }
         private FileDataListSingleton()
         {
             Zagotovkas = LoadZagotovkas();
             Orders = LoadOrders();
             Mebels = LoadMebels();
             MebelZagotovkas = LoadMebelZagotovkas();
+            Clients = LoadClients();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -41,6 +44,7 @@ namespace AbstractMebelFileImplement
             SaveOrders();
             SaveMebels();
             SaveMebelZagotovkas();
+            SaveClients();
         }
         private List<Zagotovka> LoadZagotovkas()
         {
@@ -126,6 +130,26 @@ namespace AbstractMebelFileImplement
             }
             return list;
         }
+        private List<Client> LoadClients()
+        {
+            var list = new List<Client>();
+            if (File.Exists(ClientFileName))
+            {
+                XDocument xDocument = XDocument.Load(ClientFileName);
+                var xElements = xDocument.Root.Elements("Client").ToList();
+                foreach (var elem in xElements)
+                {
+                    list.Add(new Client
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        ClientFIO = elem.Element("ClientFIO").Value,
+                        Email = elem.Element("Email").Value,
+                        Password = elem.Element("Password").Value
+                    });
+                }
+            }
+            return list;
+        }
         private void SaveZagotovkas()
         {
             if (Zagotovkas != null)
@@ -192,6 +216,25 @@ namespace AbstractMebelFileImplement
                 }
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(MebelZagotovkaFileName);
+            }
+        }
+        private void SaveClients()
+        {
+            if (Clients != null)
+            {
+                var xElement = new XElement("Clients");
+
+                foreach (var client in Clients)
+                {
+                    xElement.Add(new XElement("Client",
+                    new XAttribute("Id", client.Id),
+                    new XElement("ClientFIO", client.ClientFIO),
+                    new XElement("Email", client.Email),
+                    new XElement("Password", client.Password)));
+                }
+
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(ClientFileName);
             }
         }
     }
