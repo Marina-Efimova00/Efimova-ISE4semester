@@ -59,7 +59,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
         public void FinishOrder(ChangeStatusBindingModel model)
