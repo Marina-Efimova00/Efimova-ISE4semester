@@ -28,6 +28,7 @@ namespace AbstractMebelClientView
                 {
                     APIClient.PostRequest("api/client/updatedata", new ClientBindingModel
                     {
+                        Id = Program.Client.Id,
                         ClientFIO = textBoxClientFIO.Text,
                         Email = textBoxEmail.Text,
                         Password = textBoxPassword.Text
