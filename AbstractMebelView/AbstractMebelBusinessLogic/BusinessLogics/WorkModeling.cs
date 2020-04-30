@@ -68,8 +68,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                     {
                         mainLogic.TakeOrderInWork(new ChangeStatusBindingModel
                         {
-                            OrderId
-                       = order.Id,
+                            OrderId = order.Id,
                             ImplementerId = implementer.Id
                         });
                         // делаем работу
@@ -77,8 +76,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                         order.Count);
                         mainLogic.FinishOrder(new ChangeStatusBindingModel
                         {
-                            OrderId =
-order.Id
+                            OrderId = order.Id
                         });
                         // отдыхаем
                         Thread.Sleep(implementer.PauseTime);
