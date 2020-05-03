@@ -68,6 +68,7 @@ model.Id);
             {
                 Id = rec.Id,
                 MebelName = rec.Mebel.MebelName,
+                MebelId = rec.Mebel.Id,
                 Count = rec.Count,
                 Sum = rec.Sum,
                 Status = rec.Status,

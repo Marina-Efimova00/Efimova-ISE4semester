@@ -12,7 +12,7 @@ namespace AbstractMebelDatabaseImplement
         {
             if (optionsBuilder.IsConfigured == false)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-0TUFHPTU\SQLEXPRESS;Initial Catalog=AbstractMebelDatabase;Integrated Security=True;MultipleActiveResultSets=True;");
+                optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-0TUFHPTU\SQLEXPRESS;Initial Catalog=AbstractMebelHomeDatabase;Integrated Security=True;MultipleActiveResultSets=True;");
             }
             base.OnConfiguring(optionsBuilder);
         }
@@ -20,5 +20,7 @@ namespace AbstractMebelDatabaseImplement
         public virtual DbSet<Mebel> Mebels { set; get; }
         public virtual DbSet<MebelZagotovka> MebelZagotovkas { set; get; }
         public virtual DbSet<Order> Orders { set; get; }
+        public virtual DbSet<StorageZagotovka> StorageZagotovkas { set; get; }
+        public virtual DbSet<Storage> Storages { set; get; }
     }
 }

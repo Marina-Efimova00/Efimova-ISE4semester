@@ -4,17 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-
 namespace AbstractMebelDatabaseImplement.Models
 {
-    public class Zagotovka
+    public class Storage
     {
         public int Id { get; set; }
         [Required]
-        public string ZagotovkaName { get; set; }
-        [ForeignKey("ZagotovkaId")]
-        public virtual List<MebelZagotovka> MebelZagotovkas { get; set; }
-        [ForeignKey("ZagotovkaId")]
+        public string StorageName { get; set; }
+        [ForeignKey("StorageId")]
         public virtual List<StorageZagotovka> StorageZagotovkas { get; set; }
     }
 }
