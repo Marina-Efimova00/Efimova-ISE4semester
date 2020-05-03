@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.ReportStorageZagotovkaViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonToPdf = new System.Windows.Forms.Button();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
@@ -56,7 +55,7 @@
             this.reportViewer.Location = new System.Drawing.Point(10, 61);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ServerReport.BearerToken = null;
-            this.reportViewer.Size = new System.Drawing.Size(889, 402);
+            this.reportViewer.Size = new System.Drawing.Size(890, 465);
             this.reportViewer.TabIndex = 2;
             this.reportViewer.Load += new System.EventHandler(this.reportViewer_Load);
             // 
@@ -64,7 +63,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(912, 467);
+            this.ClientSize = new System.Drawing.Size(908, 532);
             this.Controls.Add(this.reportViewer);
             this.Controls.Add(this.buttonToPdf);
             this.Name = "FormReportZagotovka";
