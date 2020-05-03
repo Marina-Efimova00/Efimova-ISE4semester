@@ -267,6 +267,18 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReportStorageZagotovka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportStorageZagotovka.Designer.cs">
+      <DependentUpon>FormReportStorageZagotovka.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportZagotovka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportZagotovka.Designer.cs">
+      <DependentUpon>FormReportZagotovka.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormStorage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -330,6 +342,12 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReportStorageZagotovka.resx">
+      <DependentUpon>FormReportStorageZagotovka.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportZagotovka.resx">
+      <DependentUpon>FormReportZagotovka.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStorage.resx">
       <DependentUpon>FormStorage.cs</DependentUpon>
     </EmbeddedResource>
@@ -364,11 +382,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Report.rdlc" />
+    <EmbeddedResource Include="ReportZagotovka.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.MebelViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.OrderViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.ReportMebelZagotovkaViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.ReportOrdersViewModel.datasource" />
+    <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.ReportStorageZagotovkaViewModel.datasource" />
+    <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.StorageViewModel.datasource" />
+    <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.StorageZagotovkaViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.ZagotovkaViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractMebelView.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\AbstractMebelView.Properties.Settings.datasource" />

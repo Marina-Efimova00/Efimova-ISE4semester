@@ -11,7 +11,6 @@ namespace AbstractMebelDatabaseImplement.Models
         public int Id { get; set; }
         [Required]
         public string StorageName { get; set; }
-        [ForeignKey("StorageId")]
         public virtual List<StorageZagotovka> StorageZagotovkas { get; set; }
     }
 }

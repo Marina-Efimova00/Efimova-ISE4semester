@@ -63,6 +63,8 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                     CellToName = "E1"
                 });
                 uint rowIndex = 2;
+                if (info.Orders != null)
+                {
                 foreach (var date in info.Orders)
                 {
                     decimal dateSum = 0;
@@ -119,14 +121,82 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                     });
                     rowIndex++;
                 }
-                workbookpart.Workbook.Save();
             }
+             else if (info.Storages != null)
+            {
+                foreach (var storage in info.Storages)
+                {
+                    int zagotovkasSum = 0;
+
+                    InsertCellInWorksheet(new ExcelCellParameters
+                    {
+                        Worksheet = worksheetPart.Worksheet,
+                        ShareStringPart = shareStringPart,
+                        ColumnName = "A",
+                        RowIndex = rowIndex,
+                        Text = storage.StorageName,
+                        StyleIndex = 0U
+                    });
+
+                    rowIndex++;
+
+                    foreach (var zagotovka in storage.StorageZagotovkas)
+                    {
+                        InsertCellInWorksheet(new ExcelCellParameters
+                        {
+                            Worksheet = worksheetPart.Worksheet,
+                            ShareStringPart = shareStringPart,
+                            ColumnName = "B",
+                            RowIndex = rowIndex,
+                            Text = zagotovka.ZagotovkaName,
+                            StyleIndex = 1U
+                        });
+
+                        InsertCellInWorksheet(new ExcelCellParameters
+                        {
+                            Worksheet = worksheetPart.Worksheet,
+                            ShareStringPart = shareStringPart,
+                            ColumnName = "C",
+                            RowIndex = rowIndex,
+                            Text = zagotovka.Count.ToString(),
+                            StyleIndex = 1U
+                        });
+
+                        zagotovkasSum += zagotovka.Count;
+
+                        rowIndex++;
+                    }
+
+                    InsertCellInWorksheet(new ExcelCellParameters
+                    {
+                        Worksheet = worksheetPart.Worksheet,
+                        ShareStringPart = shareStringPart,
+                        ColumnName = "A",
+                        RowIndex = rowIndex,
+                        Text = "Итого",
+                        StyleIndex = 0U
+                    });
+
+                    InsertCellInWorksheet(new ExcelCellParameters
+                    {
+                        Worksheet = worksheetPart.Worksheet,
+                        ShareStringPart = shareStringPart,
+                        ColumnName = "C",
+                        RowIndex = rowIndex,
+                        Text = zagotovkasSum.ToString(),
+                        StyleIndex = 0U
+                    });
+                    rowIndex++;
+                }
+            }
+            workbookpart.Workbook.Save();
         }
-        /// <summary>
-        /// Настройка стилей для файла
-        /// </summary>
-        /// <param name="workbookpart"></param>
-        private static void CreateStyles(WorkbookPart workbookpart)
+    }
+    /// <summary>
+    /// Настройка стилей для файла
+    /// </summary>
+    /// <param name="workbookpart"></param>
+    private static void CreateStyles(WorkbookPart workbookpart)
         {
             WorkbookStylesPart sp = workbookpart.AddNewPart<WorkbookStylesPart>();
             sp.Stylesheet = new Stylesheet();
