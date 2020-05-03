@@ -22,6 +22,19 @@ namespace AbstractMebelDatabaseImplement.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Storages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StorageName = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Storages", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Zagotovkas",
                 columns: table => new
                 {
@@ -85,11 +98,37 @@ namespace AbstractMebelDatabaseImplement.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "StorageZagotovkas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StorageId = table.Column<int>(nullable: false),
+                    ZagotovkaId = table.Column<int>(nullable: false),
+                    Count = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StorageZagotovkas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StorageZagotovkas_Storages_StorageId",
+                        column: x => x.StorageId,
+                        principalTable: "Storages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StorageZagotovkas_Zagotovkas_ZagotovkaId",
+                        column: x => x.ZagotovkaId,
+                        principalTable: "Zagotovkas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_MebelZagotovkas_MebelId",
                 table: "MebelZagotovkas",
-                column: "MebelId",
-                unique: true);
+                column: "MebelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MebelZagotovkas_ZagotovkaId",
@@ -100,6 +139,16 @@ namespace AbstractMebelDatabaseImplement.Migrations
                 name: "IX_Orders_MebelId",
                 table: "Orders",
                 column: "MebelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StorageZagotovkas_StorageId",
+                table: "StorageZagotovkas",
+                column: "StorageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StorageZagotovkas_ZagotovkaId",
+                table: "StorageZagotovkas",
+                column: "ZagotovkaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -111,10 +160,16 @@ namespace AbstractMebelDatabaseImplement.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Zagotovkas");
+                name: "StorageZagotovkas");
 
             migrationBuilder.DropTable(
                 name: "Mebels");
+
+            migrationBuilder.DropTable(
+                name: "Storages");
+
+            migrationBuilder.DropTable(
+                name: "Zagotovkas");
         }
     }
 }

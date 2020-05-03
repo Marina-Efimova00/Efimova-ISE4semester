@@ -6,15 +6,12 @@ using System.Text;
 
 namespace AbstractMebelDatabaseImplement.Models
 {
-    public class Mebel
+    public class Storage
     {
         public int Id { get; set; }
         [Required]
-        public string MebelName { get; set; }
-        [Required]
-        public decimal Price { get; set; }
-
-        public virtual List<MebelZagotovka> MebelZagotovkas { get; set; }
-        public virtual List<Order> Orders { get; set; }
+        public string StorageName { get; set; }
+        [ForeignKey("StorageId")]
+        public virtual List<StorageZagotovka> StorageZagotovkas { get; set; }
     }
 }
