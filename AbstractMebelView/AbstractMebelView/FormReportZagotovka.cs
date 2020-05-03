@@ -24,7 +24,6 @@ namespace AbstractMebelView
             InitializeComponent();
             this.logic = logic;
         }
-
         private void buttonToPdf_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog { Filter = "pdf|*.pdf" })
@@ -47,7 +46,6 @@ namespace AbstractMebelView
                 }
             }
         }
-
         private void reportViewer_Load(object sender, EventArgs e)
         {
             try
