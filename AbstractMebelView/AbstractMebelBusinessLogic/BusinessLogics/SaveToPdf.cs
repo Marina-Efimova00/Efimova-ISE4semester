@@ -27,23 +27,69 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
             {
                 table.AddColumn(elem);
             }
-            CreateRow(new PdfRowParameters
+            if (info.MebelZagotovkas != null)
             {
-                Table = table,
-                Texts = new List<string> { "Заготовка", "Мебель", "Количество" },
-                Style = "NormalTitle",
-                ParagraphAlignment = ParagraphAlignment.Center
-            });
-            foreach (var mb in info.MebelZagotovkas)
+                CreateRow(new PdfRowParameters
+                {
+                    Table = table,
+                    Texts = new List<string> { "Заготовка", "Мебель", "Количество" },
+                    Style = "NormalTitle",
+                    ParagraphAlignment = ParagraphAlignment.Center
+                });
+                foreach (var mb in info.MebelZagotovkas)
+                {
+                    CreateRow(new PdfRowParameters
+                    {
+                        Table = table,
+                        Texts = new List<string>
+                    {
+                        mb.ZagotovkaName,
+                        mb.MebelName,
+                        mb.Count.ToString()
+                    },
+                        Style = "Normal",
+                        ParagraphAlignment = ParagraphAlignment.Left
+                    });
+                }
+            }
+            else if (info.StorageZagotovkas != null)
             {
+                int sum = 0;
+
+                CreateRow(new PdfRowParameters
+                {
+                    Table = table,
+                    Texts = new List<string> { "Заготовка", "Склад", "Количество" },
+                    Style = "NormalTitle",
+                    ParagraphAlignment = ParagraphAlignment.Center
+                });
+
+                foreach (var wc in info.StorageZagotovkas)
+                {
+                    CreateRow(new PdfRowParameters
+                    {
+                        Table = table,
+                        Texts = new List<string>
+                    {
+                        wc.ZagotovkaName,
+                        wc.StorageName,
+                        wc.Count.ToString()
+                    },
+                        Style = "Normal",
+                        ParagraphAlignment = ParagraphAlignment.Left
+                    });
+
+                    sum += wc.Count;
+                }
+
                 CreateRow(new PdfRowParameters
                 {
                     Table = table,
                     Texts = new List<string>
                     {
-                        mb.ZagotovkaName,
-                        mb.MebelName,
-                        mb.Count.ToString()
+                        "Всего",
+                        "",
+                        sum.ToString()
                     },
                     Style = "Normal",
                     ParagraphAlignment = ParagraphAlignment.Left

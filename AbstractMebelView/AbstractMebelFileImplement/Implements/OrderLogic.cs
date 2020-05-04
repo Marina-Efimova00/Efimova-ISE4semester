@@ -65,6 +65,8 @@ namespace AbstractMebelFileImplement.Implements
                 MebelName = GetMebelName(rec.MebelId),
                 ClientId = rec.ClientId,
                 ClientFIO = source.Clients.FirstOrDefault(recC => recC.Id == rec.ClientId)?.ClientFIO,
+                MebelId = rec.MebelId,
+                MebelName = source.Mebels.FirstOrDefault(x => x.Id == rec.MebelId)?.MebelName,
                 Count = rec.Count,
                 Sum = rec.Sum,
                 Status = rec.Status,
@@ -72,14 +74,6 @@ namespace AbstractMebelFileImplement.Implements
                 DateImplement = rec.DateImplement
             })
             .ToList();
-        }
-
-        private string GetMebelName(int id)
-        {
-            string name = "";
-            var mebel = source.Mebels.FirstOrDefault(x => x.Id == id);
-            name = mebel != null ? mebel.MebelName : "";
-            return name;
         }
     }
 }

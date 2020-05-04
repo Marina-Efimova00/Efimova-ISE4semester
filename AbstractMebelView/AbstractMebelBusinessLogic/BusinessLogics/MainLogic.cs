@@ -11,9 +11,11 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
     public class MainLogic
     {
         private readonly IOrderLogic orderLogic;
-        public MainLogic(IOrderLogic orderLogic)
+        private readonly IStorageLogic storageLogic;
+        public MainLogic(IOrderLogic orderLogic, IStorageLogic storageLogic)
         {
             this.orderLogic = orderLogic;
+            this.storageLogic = storageLogic;
         }
         public void CreateOrder(CreateOrderBindingModel model)
         {
@@ -40,17 +42,25 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-            orderLogic.CreateOrUpdate(new OrderBindingModel
+            Console.WriteLine($"Take order with id {order.Id} and mebel id {order.MebelId}");
+            try
             {
-                Id = order.Id,
-                ClientId = order.ClientId,
-                MebelId = order.MebelId,
-                Count = order.Count,
-                Sum = order.Sum,
-                DateCreate = order.DateCreate,
-                DateImplement = DateTime.Now,
-                Status = OrderStatus.Выполняется
-            });
+                storageLogic.RemoveFromStorage(order.MebelId, order.Count);
+                orderLogic.CreateOrUpdate(new OrderBindingModel
+                {
+                    Id = order.Id,
+                    MebelId = order.MebelId,
+                    Count = order.Count,
+                    Sum = order.Sum,
+                    DateCreate = order.DateCreate,
+                    DateImplement = DateTime.Now,
+                    Status = OrderStatus.Выполняется
+                });
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
         public void FinishOrder(ChangeStatusBindingModel model)
         {
@@ -101,6 +111,10 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Оплачен
             });
+        }
+        public void FillStorage(StorageZagotovkaBindingModel model)
+        {
+            storageLogic.FillStorage(model);
         }
     }
 }

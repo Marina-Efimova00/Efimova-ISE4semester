@@ -14,12 +14,14 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
         private readonly IZagotovkaLogic ZagotovkaLogic;
         private readonly IMebelLogic MebelLogic;
         private readonly IOrderLogic orderLogic;
+        private readonly IStorageLogic storageLogic;
         public ReportLogic(IMebelLogic MebelLogic, IZagotovkaLogic ZagotovkaLogic,
-       IOrderLogic orderLogic)
+       IOrderLogic orderLLogic, IStorageLogic storageLogic)
         {
             this.MebelLogic = MebelLogic;
             this.ZagotovkaLogic = ZagotovkaLogic;
-            this.orderLogic = orderLogic;
+            this.orderLogic = orderLLogic;
+            this.storageLogic = storageLogic;
         }
 
         public List<ReportMebelZagotovkaViewModel> GetMebelZagotovka()
@@ -36,6 +38,27 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                         ZagotovkaName = mb.Value.Item1,
                         Count = mb.Value.Item2,
                     };
+                    list.Add(record);
+                }
+            }
+            return list;
+        }
+        public List<ReportStorageZagotovkaViewModel> GetStorageZagotovkas()
+        {
+            var storages = storageLogic.GetList();
+            var list = new List<ReportStorageZagotovkaViewModel>();
+
+            foreach (var storage in storages)
+            {
+                foreach (var sz in storage.StorageZagotovkas)
+                {
+                    var record = new ReportStorageZagotovkaViewModel
+                    {
+                        StorageName = storage.StorageName,
+                        ZagotovkaName = sz.ZagotovkaName,
+                        Count = sz.Count
+                    };
+
                     list.Add(record);
                 }
             }
@@ -80,6 +103,38 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                 FileName = model.FileName,
                 Title = "Список заготовок мебели",
                 MebelZagotovkas = GetMebelZagotovka(),
+            });
+        }
+        public void SaveStoragesToWordFile(ReportBindingModel model)
+        {
+            SaveToWord.CreateDoc(new WordInfo
+            {
+                FileName = model.FileName,
+                Title = "Список складов",
+                Mebels = null,
+                Storages = storageLogic.GetList()
+            });
+        }
+
+        public void SaveStorageZagotovkasToExcelFile(ReportBindingModel model)
+        {
+            SaveToExcel.CreateDoc(new ExcelInfo
+            {
+                FileName = model.FileName,
+                Title = "Список заготовок на складах",
+                Orders = null,
+                Storages = storageLogic.GetList()
+            });
+        }
+
+        public void SaveComponentsToPdfFile(ReportBindingModel model)
+        {
+            SaveToPdf.CreateDoc(new PdfInfo
+            {
+                FileName = model.FileName,
+                Title = "Заготовок",
+                MebelZagotovkas = null,
+                StorageZagotovkas = GetStorageZagotovkas()
             });
         }
     }
