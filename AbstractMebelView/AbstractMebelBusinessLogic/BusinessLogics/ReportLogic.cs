@@ -16,11 +16,11 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
         private readonly IOrderLogic orderLogic;
         private readonly IStorageLogic storageLogic;
         public ReportLogic(IMebelLogic MebelLogic, IZagotovkaLogic ZagotovkaLogic,
-       IOrderLogic orderLLogic, IStorageLogic storageLogic)
+       IOrderLogic orderLogic, IStorageLogic storageLogic)
         {
             this.MebelLogic = MebelLogic;
             this.ZagotovkaLogic = ZagotovkaLogic;
-            this.orderLogic = orderLLogic;
+            this.orderLogic = orderLogic;
             this.storageLogic = storageLogic;
         }
 
