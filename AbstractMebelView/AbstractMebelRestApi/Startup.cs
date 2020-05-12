@@ -31,6 +31,8 @@ namespace AbstractMebelRestApi
             services.AddTransient<IClientLogic, ClientLogic>();
             services.AddTransient<IOrderLogic, OrderLogic>();
             services.AddTransient<IMebelLogic, MebelLogic>();
+            services.AddTransient<IStorageLogic, StorageLogic>();
+            services.AddTransient<IZagotovkaLogic, ZagotovkaLogic>();
             services.AddTransient<MainLogic>();
 
             services.AddControllers();

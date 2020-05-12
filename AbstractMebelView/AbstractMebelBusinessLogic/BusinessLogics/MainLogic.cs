@@ -50,6 +50,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                 {
                     Id = order.Id,
                     MebelId = order.MebelId,
+                    ClientId = order.ClientId,
                     Count = order.Count,
                     Sum = order.Sum,
                     DateCreate = order.DateCreate,

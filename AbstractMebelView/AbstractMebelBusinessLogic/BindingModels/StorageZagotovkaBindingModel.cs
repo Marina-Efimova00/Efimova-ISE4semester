@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace AbstractMebelBusinessLogic.BindingModels
 {
+    [DataContract]
     public class StorageZagotovkaBindingModel
     {
         public int Id { get; set; }
