@@ -199,7 +199,7 @@ namespace AbstractMebelDatabaseImplement.Migrations
             modelBuilder.Entity("AbstractMebelDatabaseImplement.Models.Order", b =>
                 {
                     b.HasOne("AbstractMebelDatabaseImplement.Models.Client", "Client")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
