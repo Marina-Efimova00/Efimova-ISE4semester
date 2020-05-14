@@ -7,7 +7,7 @@ namespace AbstractMebelBusinessLogic.BindingModels
 {
     [DataContract]
     public class MessageInfoBindingModel
-    {
+    {,
         [DataMember]
         public int? ClientId { get; set; }
         [DataMember]
