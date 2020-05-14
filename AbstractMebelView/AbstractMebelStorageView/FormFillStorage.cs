@@ -47,7 +47,7 @@ namespace AbstractMebelStorageView
 
             if (comboBoxZagotovka.SelectedValue == null)
             {
-                MessageBox.Show("Выберите заготовку", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Выберите зоготовку", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

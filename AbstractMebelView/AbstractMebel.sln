@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractMebelRestApi", "Abs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractMebelClientView", "AbstractMebelClientView\AbstractMebelClientView.csproj", "{725BD059-8BF7-4DC2-9CFF-F956A51BBEB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractMebelStorageView", "AbstractMebelStorageView\AbstractMebelStorageView.csproj", "{F46641B0-A8D0-42D4-8CA3-C3C76989D5CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractMebelStorageView", "AbstractMebelStorageView\AbstractMebelStorageView.csproj", "{48AB7EC3-DE54-47B6-AA64-05A470F7C144}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{725BD059-8BF7-4DC2-9CFF-F956A51BBEB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{725BD059-8BF7-4DC2-9CFF-F956A51BBEB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{725BD059-8BF7-4DC2-9CFF-F956A51BBEB0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F46641B0-A8D0-42D4-8CA3-C3C76989D5CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F46641B0-A8D0-42D4-8CA3-C3C76989D5CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F46641B0-A8D0-42D4-8CA3-C3C76989D5CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F46641B0-A8D0-42D4-8CA3-C3C76989D5CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48AB7EC3-DE54-47B6-AA64-05A470F7C144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48AB7EC3-DE54-47B6-AA64-05A470F7C144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48AB7EC3-DE54-47B6-AA64-05A470F7C144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48AB7EC3-DE54-47B6-AA64-05A470F7C144}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

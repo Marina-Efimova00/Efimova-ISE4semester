@@ -22,6 +22,7 @@ namespace AbstractMebelStorageView
             try
             {
                 dataGridView.DataSource = APIStorage.GetRequest<List<StorageViewModel>>($"api/storage/getstorageslist");
+
                 dataGridView.Columns[0].Visible = false;
                 dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 dataGridView.Columns[2].Visible = false;
@@ -31,20 +32,24 @@ namespace AbstractMebelStorageView
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void создатьСкладToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FormStorage();
+
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadList();
             }
         }
+
         private void изменитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
                 var form = new FormStorage();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     LoadList();
@@ -55,6 +60,7 @@ namespace AbstractMebelStorageView
                 MessageBox.Show("Выберите склад", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void пополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -72,6 +78,7 @@ namespace AbstractMebelStorageView
                 MessageBox.Show("Выберите склад", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void удалитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -79,17 +86,16 @@ namespace AbstractMebelStorageView
                 if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+
                     try
                     {
-                        APIStorage.PostRequest("api/storage/deletestorage", new StorageBindingModel
-                        {
-                            Id = id,
-                        });
+                        APIStorage.PostRequest("api/storage/deletestorage", new StorageBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+
                     LoadList();
                 }
             }
@@ -98,6 +104,7 @@ namespace AbstractMebelStorageView
                 MessageBox.Show("Выберите склад", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void обновитьСписокToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadList();

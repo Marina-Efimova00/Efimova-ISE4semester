@@ -16,8 +16,10 @@ namespace AbstractMebelStorageView
         static void Main()
         {
             APIStorage.Connect();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             var form = new FormEnter();
             form.ShowDialog();
 
