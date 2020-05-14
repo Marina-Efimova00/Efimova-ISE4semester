@@ -25,7 +25,6 @@ namespace AbstractMebelStorageView
 
                 dataGridView.Columns[0].Visible = false;
                 dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dataGridView.Columns[2].Visible = false;
             }
             catch (Exception ex)
             {
