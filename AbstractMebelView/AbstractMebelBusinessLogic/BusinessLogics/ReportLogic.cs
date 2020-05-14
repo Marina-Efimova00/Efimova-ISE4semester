@@ -132,7 +132,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
             SaveToPdf.CreateDoc(new PdfInfo
             {
                 FileName = model.FileName,
-                Title = "Заготовок",
+                Title = "Список заготовок",
                 MebelZagotovkas = null,
                 StorageZagotovkas = GetStorageZagotovkas()
             });
