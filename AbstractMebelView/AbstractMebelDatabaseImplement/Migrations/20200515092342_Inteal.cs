@@ -2,7 +2,7 @@
 
 namespace AbstractMebelDatabaseImplement.Migrations
 {
-    public partial class CreateInitial : Migration
+    public partial class Inteal : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

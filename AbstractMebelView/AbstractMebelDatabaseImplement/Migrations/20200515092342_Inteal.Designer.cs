@@ -7,11 +7,12 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+
 namespace AbstractMebelDatabaseImplement.Migrations
 {
     [DbContext(typeof(AbstractMebelDatabase))]
-    [Migration("20200514141235_Messange")]
-    partial class Messange
+    [Migration("20200515092342_Inteal")]
+    partial class Inteal
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -220,7 +221,7 @@ namespace AbstractMebelDatabaseImplement.Migrations
             modelBuilder.Entity("AbstractMebelDatabaseImplement.Models.Order", b =>
                 {
                     b.HasOne("AbstractMebelDatabaseImplement.Models.Client", "Client")
-                        .WithMany("Orders")
+                        .WithMany()
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
