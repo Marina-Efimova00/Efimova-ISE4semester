@@ -61,7 +61,8 @@ namespace AbstractMebelFileImplement.Implements
             .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,
-                MebelName = GetMebelName(rec.MebelId),
+                MebelId = rec.MebelId,
+                MebelName = source.Mebels.FirstOrDefault(x => x.Id == rec.MebelId)?.MebelName,
                 Count = rec.Count,
                 Sum = rec.Sum,
                 Status = rec.Status,
@@ -69,14 +70,6 @@ namespace AbstractMebelFileImplement.Implements
                 DateImplement = rec.DateImplement
             })
             .ToList();
-        }
-
-        private string GetMebelName(int id)
-        {
-            string name = "";
-            var mebel = source.Mebels.FirstOrDefault(x => x.Id == id);
-            name = mebel != null ? mebel.MebelName : "";
-            return name;
         }
     }
 }

@@ -255,11 +255,41 @@
     <Compile Include="FormCreateOrder.Designer.cs">
       <DependentUpon>FormCreateOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormFillStorage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFillStorage.Designer.cs">
+      <DependentUpon>FormFillStorage.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportStorageZagotovka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportStorageZagotovka.Designer.cs">
+      <DependentUpon>FormReportStorageZagotovka.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportZagotovka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportZagotovka.Designer.cs">
+      <DependentUpon>FormReportZagotovka.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStorage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStorage.Designer.cs">
+      <DependentUpon>FormStorage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStorages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStorages.Designer.cs">
+      <DependentUpon>FormStorages.cs</DependentUpon>
     </Compile>
     <Compile Include="FormReportMebelZagotovkas.cs">
       <SubType>Form</SubType>
@@ -306,8 +336,23 @@
     <EmbeddedResource Include="FormCreateOrder.resx">
       <DependentUpon>FormCreateOrder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFillStorage.resx">
+      <DependentUpon>FormFillStorage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportStorageZagotovka.resx">
+      <DependentUpon>FormReportStorageZagotovka.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportZagotovka.resx">
+      <DependentUpon>FormReportZagotovka.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStorage.resx">
+      <DependentUpon>FormStorage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStorages.resx">
+      <DependentUpon>FormStorages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportMebelZagotovkas.resx">
       <DependentUpon>FormReportMebelZagotovkas.cs</DependentUpon>
@@ -337,11 +382,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Report.rdlc" />
+    <EmbeddedResource Include="ReportZagotovka.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.MebelViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.OrderViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.ReportMebelZagotovkaViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.ReportOrdersViewModel.datasource" />
+    <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.ReportStorageZagotovkaViewModel.datasource" />
+    <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.StorageViewModel.datasource" />
+    <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.StorageZagotovkaViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractMebelBusinessLogic.ViewModels.ZagotovkaViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractMebelView.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\AbstractMebelView.Properties.Settings.datasource" />
