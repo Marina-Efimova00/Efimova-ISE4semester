@@ -7,12 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-
 namespace AbstractMebelDatabaseImplement.Migrations
 {
     [DbContext(typeof(AbstractMebelDatabase))]
-    [Migration("20200515092342_Inteal")]
-    partial class Inteal
+    [Migration("20200521131053_Inplementer")]
+    partial class Inplementer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

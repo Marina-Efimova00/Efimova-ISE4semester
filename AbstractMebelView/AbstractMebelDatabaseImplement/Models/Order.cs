@@ -21,7 +21,7 @@ namespace AbstractMebelDatabaseImplement.Models
         [Required]
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
-        public virtual Mebel Mebel { get; set; }
+        public Mebel Mebel { get; set; }
         public Client Client { get; set; }
         public Implementer Implementer { get; set; }
     }

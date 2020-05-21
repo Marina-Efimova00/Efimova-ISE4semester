@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AbstractMebelDatabaseImplement.Migrations
 {
     [DbContext(typeof(AbstractMebelDatabase))]
-    [Migration("20200424090402_Initial")]
-    partial class Initial
+    [Migration("20200521131700_Message")]
+    partial class Message
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,6 +110,33 @@ namespace AbstractMebelDatabaseImplement.Migrations
                     b.ToTable("MebelZagotovkas");
                 });
 
+            modelBuilder.Entity("AbstractMebelDatabaseImplement.Models.MessageInfo", b =>
+                {
+                    b.Property<string>("MessageId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateDelivery")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SenderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MessageId");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("MessageInfoes");
+                });
+
             modelBuilder.Entity("AbstractMebelDatabaseImplement.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -181,6 +208,13 @@ namespace AbstractMebelDatabaseImplement.Migrations
                         .HasForeignKey("ZagotovkaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AbstractMebelDatabaseImplement.Models.MessageInfo", b =>
+                {
+                    b.HasOne("AbstractMebelDatabaseImplement.Models.Client", "Client")
+                        .WithMany("MessageInfoes")
+                        .HasForeignKey("ClientId");
                 });
 
             modelBuilder.Entity("AbstractMebelDatabaseImplement.Models.Order", b =>

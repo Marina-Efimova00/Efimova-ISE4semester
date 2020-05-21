@@ -46,6 +46,7 @@ namespace AbstractMebelView
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
                     dataGridView.Columns[2].Visible = false;
+                    dataGridView.Columns[3].Visible = false;
                     dataGridView.Columns[5].Visible = false;
                     dataGridView.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
@@ -140,8 +141,7 @@ namespace AbstractMebelView
             work.DoWork();
             LoadData();
         }
-
-        private void buttonMessages_Click(object sender, EventArgs e)
+        private void сообщенияToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormMessage>();
             form.ShowDialog();

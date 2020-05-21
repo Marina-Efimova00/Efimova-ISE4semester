@@ -13,5 +13,6 @@ namespace AbstractMebelDatabaseImplement.Models
         public int WorkingTime { get; set; }
 
         public int PauseTime { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

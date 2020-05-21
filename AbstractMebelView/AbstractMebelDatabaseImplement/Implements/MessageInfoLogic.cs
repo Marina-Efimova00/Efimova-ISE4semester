@@ -16,14 +16,11 @@ namespace AbstractMebelDatabaseImplement.Implements
             using (var context = new AbstractMebelDatabase())
             {
                 MessageInfo element = context.MessageInfoes.FirstOrDefault(rec => rec.MessageId == model.MessageId);
-
                 if (element != null)
                 {
                     throw new Exception("Уже есть письмо с таким идентификатором");
                 }
-
                 int? clientId = context.Clients.FirstOrDefault(rec => rec.Email == model.FromMailAddress)?.Id;
-
                 context.MessageInfoes.Add(new MessageInfo
                 {
                     MessageId = model.MessageId,
@@ -33,11 +30,9 @@ namespace AbstractMebelDatabaseImplement.Implements
                     Subject = model.Subject,
                     Body = model.Body
                 });
-
                 context.SaveChanges();
             }
         }
-
         public List<MessageInfoViewModel> Read(MessageInfoBindingModel model)
         {
             using (var context = new AbstractMebelDatabase())
