@@ -48,7 +48,7 @@ namespace AbstractMebelDatabaseImplement.Implements
                            => rec.MebelId == model.Id.Value).ToList();
                             // удалили те, которых нет в модели
                             context.MebelZagotovkas.RemoveRange(mebelZagotovkas.Where(rec =>
-                            !model.MebelZagotovkas.ContainsKey(rec.MebelId)).ToList());
+                            !model.MebelZagotovkas.ContainsKey(rec.ZagotovkaId)).ToList());
                             context.SaveChanges();
                             // обновили количество у существующих записей
                             foreach (var updateZagotovka in mebelZagotovkas)
@@ -56,7 +56,7 @@ namespace AbstractMebelDatabaseImplement.Implements
                                 updateZagotovka.Count =
                                model.MebelZagotovkas[updateZagotovka.ZagotovkaId].Item2;
 
-                                model.MebelZagotovkas.Remove(updateZagotovka.MebelId);
+                                model.MebelZagotovkas.Remove(updateZagotovka.ZagotovkaId);
                             }
                             context.SaveChanges();
                         }
