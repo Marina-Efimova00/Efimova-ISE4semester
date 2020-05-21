@@ -32,6 +32,7 @@ namespace AbstractMebelDatabaseImplement.Implements
                     context.Orders.Add(element);
                 }
                 element.MebelId = model.MebelId == 0 ? element.MebelId : model.MebelId;
+                element.ClientId = model.ClientId == null ? element.ClientId : (int)model.ClientId;
                 element.Count = model.Count;
                 element.Sum = model.Sum;
                 element.Status = model.Status;
@@ -44,8 +45,7 @@ namespace AbstractMebelDatabaseImplement.Implements
         {
             using (var context = new AbstractMebelDatabase())
             {
-                Order element = context.Orders.FirstOrDefault(rec => rec.Id ==
-model.Id);
+                Order element = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
                 if (element != null)
                 {
                     context.Orders.Remove(element);
@@ -62,18 +62,23 @@ model.Id);
             using (var context = new AbstractMebelDatabase())
             {
                 return context.Orders.Where(rec => model == null || (rec.Id == model.Id && model.Id.HasValue)
-                || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo))
-                .Select(rec => new OrderViewModel
+                 || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo) ||
+                 (model.ClientId.HasValue && rec.ClientId == model.ClientId))
+                    .Include(rec => rec.Mebel)
+                .Include(rec => rec.Client)
+                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
+                    ClientId = rec.ClientId,
                     MebelId = rec.MebelId,
                     DateCreate = rec.DateCreate,
                     DateImplement = rec.DateImplement,
                     Status = rec.Status,
                     Count = rec.Count,
                     Sum = rec.Sum,
-                    MebelName = rec.Mebel.MebelName
-                })
+                    MebelName = rec.Mebel.MebelName,
+                    ClientFIO = rec.Client.ClientFIO
+                 })
                 .ToList();
             }
         }

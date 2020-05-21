@@ -15,11 +15,11 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
         private readonly IMebelLogic MebelLogic;
         private readonly IOrderLogic orderLogic;
         public ReportLogic(IMebelLogic MebelLogic, IZagotovkaLogic ZagotovkaLogic,
-       IOrderLogic orderLLogic)
+       IOrderLogic orderLogic)
         {
             this.MebelLogic = MebelLogic;
             this.ZagotovkaLogic = ZagotovkaLogic;
-            this.orderLogic = orderLLogic;
+            this.orderLogic = orderLogic;
         }
 
         public List<ReportMebelZagotovkaViewModel> GetMebelZagotovka()

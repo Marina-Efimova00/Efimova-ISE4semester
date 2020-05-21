@@ -1,7 +1,7 @@
 ﻿using AbstractMebelBusinessLogic.BindingModels;
 using AbstractMebelBusinessLogic.Interfaces;
 using AbstractMebelBusinessLogic.ViewModels;
-using AbstractMebelListImplement.Models;
+using AbstractMebelFileImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +35,7 @@ namespace AbstractMebelFileImplement.Implements
                 source.Orders.Add(element);
             }
             element.MebelId = model.MebelId == 0 ? element.MebelId : model.MebelId;
+            element.ClientId = model.ClientId == null ? element.ClientId : (int)model.ClientId;
             element.Count = model.Count;
             element.Sum = model.Sum;
             element.Status = model.Status;
@@ -62,6 +63,8 @@ namespace AbstractMebelFileImplement.Implements
             {
                 Id = rec.Id,
                 MebelName = GetMebelName(rec.MebelId),
+                ClientId = rec.ClientId,
+                ClientFIO = source.Clients.FirstOrDefault(recC => recC.Id == rec.ClientId)?.ClientFIO,
                 Count = rec.Count,
                 Sum = rec.Sum,
                 Status = rec.Status,

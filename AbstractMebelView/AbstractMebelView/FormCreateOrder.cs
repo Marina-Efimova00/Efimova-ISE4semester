@@ -20,11 +20,13 @@ namespace AbstractMebelView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly IMebelLogic logicP;
+        private readonly IClientLogic logicC;
         private readonly MainLogic logicM;
-        public FormCreateOrder(IMebelLogic logicP, MainLogic logicM)
+        public FormCreateOrder(IMebelLogic logicP, IClientLogic logicC, MainLogic logicM)
         {
             InitializeComponent();
             this.logicP = logicP;
+            this.logicC = logicC;
             this.logicM = logicM;
         }
         private void FormCreateOrder_Load(object sender, EventArgs e)
@@ -35,6 +37,11 @@ namespace AbstractMebelView
                 comboBoxMebel.DataSource = list;
                 comboBoxMebel.DisplayMember = "MebelName";
                 comboBoxMebel.ValueMember = "Id";
+                var listC = logicC.Read(null);
+                comboBoxClient.DisplayMember = "ClientFIO";
+                comboBoxClient.ValueMember = "Id";
+                comboBoxClient.DataSource = listC;
+                comboBoxClient.SelectedItem = null;
             }
             catch (Exception ex)
             {
@@ -50,9 +57,9 @@ namespace AbstractMebelView
                 try
                 {
                     int id = Convert.ToInt32(comboBoxMebel.SelectedValue);
-                    MebelViewModel mebel = logicP.Read(new MebelBindingModel{ Id = id })?[0];
+                    MebelViewModel Mebel = logicP.Read(new MebelBindingModel{ Id = id })?[0];
                     int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * mebel.Price).ToString();
+                    textBoxSum.Text = (count * Mebel.Price).ToString();
                 }
                 catch (Exception ex)
                 {
@@ -88,6 +95,7 @@ namespace AbstractMebelView
                 logicM.CreateOrder(new CreateOrderBindingModel
                 {
                     MebelId = Convert.ToInt32(comboBoxMebel.SelectedValue),
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
                 });
