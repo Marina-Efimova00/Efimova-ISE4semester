@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AbstractMebelDatabaseImplement.Migrations
 {
     [DbContext(typeof(AbstractMebelDatabase))]
-    [Migration("20200424090402_Initial")]
-    partial class Initial
+    [Migration("20200521122028_Inplementer")]
+    partial class Inplementer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -186,7 +186,7 @@ namespace AbstractMebelDatabaseImplement.Migrations
             modelBuilder.Entity("AbstractMebelDatabaseImplement.Models.Order", b =>
                 {
                     b.HasOne("AbstractMebelDatabaseImplement.Models.Client", "Client")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

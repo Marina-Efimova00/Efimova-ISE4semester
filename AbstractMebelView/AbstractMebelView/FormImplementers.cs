@@ -70,7 +70,7 @@ namespace AbstractMebelView
 
         private void buttonRef_Click(object sender, EventArgs e)
         {
-
+            LoadData();
         }
 
         private void FormImplementers_Load(object sender, EventArgs e)
