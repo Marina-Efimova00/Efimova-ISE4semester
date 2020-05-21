@@ -52,7 +52,8 @@ namespace AbstractMebelRestApi.Controllers
             return new StorageModel
             {
                 Id = model.Id,
-                StorageName = model.StorageName
+                StorageName = model.StorageName,
+                StorageZagotovkas = model.StorageZagotovkas
             };
         }
     }

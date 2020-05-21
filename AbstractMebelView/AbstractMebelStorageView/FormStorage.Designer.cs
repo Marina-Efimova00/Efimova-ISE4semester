@@ -28,65 +28,85 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonCancel = new System.Windows.Forms.Button();
+            this.storageNameLabel = new System.Windows.Forms.Label();
+            this.storageNameTextBox = new System.Windows.Forms.TextBox();
+            this.zagotovkasGroupBox = new System.Windows.Forms.GroupBox();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.textBoxName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.zagotovkasGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // buttonCancel
+            // storageNameLabel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(250, 38);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(82, 29);
-            this.buttonCancel.TabIndex = 7;
-            this.buttonCancel.Text = "Отменить";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            this.storageNameLabel.AutoSize = true;
+            this.storageNameLabel.Location = new System.Drawing.Point(21, 9);
+            this.storageNameLabel.Name = "storageNameLabel";
+            this.storageNameLabel.Size = new System.Drawing.Size(60, 13);
+            this.storageNameLabel.TabIndex = 0;
+            this.storageNameLabel.Text = "Название:";
+            // 
+            // storageNameTextBox
+            // 
+            this.storageNameTextBox.Location = new System.Drawing.Point(87, 6);
+            this.storageNameTextBox.Name = "storageNameTextBox";
+            this.storageNameTextBox.Size = new System.Drawing.Size(234, 20);
+            this.storageNameTextBox.TabIndex = 1;
+            // 
+            // zagotovkasGroupBox
+            // 
+            this.zagotovkasGroupBox.Controls.Add(this.dataGridView);
+            this.zagotovkasGroupBox.Location = new System.Drawing.Point(11, 43);
+            this.zagotovkasGroupBox.Name = "zagotovkasGroupBox";
+            this.zagotovkasGroupBox.Size = new System.Drawing.Size(405, 362);
+            this.zagotovkasGroupBox.TabIndex = 2;
+            this.zagotovkasGroupBox.TabStop = false;
+            this.zagotovkasGroupBox.Text = "Заготовки";
+            // 
+            // dataGridView
+            // 
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Location = new System.Drawing.Point(0, 19);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(403, 342);
+            this.dataGridView.TabIndex = 0;
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(157, 38);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSave.Location = new System.Drawing.Point(260, 411);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(89, 29);
-            this.buttonSave.TabIndex = 6;
+            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.TabIndex = 3;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // textBoxName
+            // buttonCancel
             // 
-            this.textBoxName.Location = new System.Drawing.Point(87, 14);
-            this.textBoxName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(245, 20);
-            this.textBoxName.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 18);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Название";
+            this.buttonCancel.Location = new System.Drawing.Point(341, 411);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.TabIndex = 4;
+            this.buttonCancel.Text = "Отмена";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // FormStorage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 77);
+            this.ClientSize = new System.Drawing.Size(421, 443);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.textBoxName);
-            this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Controls.Add(this.zagotovkasGroupBox);
+            this.Controls.Add(this.storageNameTextBox);
+            this.Controls.Add(this.storageNameLabel);
             this.Name = "FormStorage";
             this.Text = "Склад";
             this.Load += new System.EventHandler(this.FormStorage_Load);
+            this.zagotovkasGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,9 +114,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Label storageNameLabel;
+        private System.Windows.Forms.TextBox storageNameTextBox;
+        private System.Windows.Forms.GroupBox zagotovkasGroupBox;
+        private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonCancel;
     }
 }
