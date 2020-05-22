@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 using AbstractMebelBusinessLogic.BindingModels;
 using AbstractMebelBusinessLogic.Interfaces;
 using AbstractMebelBusinessLogic.ViewModels;
-using AbstractMebelRestApi;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DinerRestApi.Controllers
+namespace AbstractMebelRestApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -17,11 +16,13 @@ namespace DinerRestApi.Controllers
     {
         private readonly IStorageLogic _storage;
         private readonly IZagotovkaLogic _zagotovka;
+
         public StorageController(IStorageLogic storage, IZagotovkaLogic zagotovka)
         {
             _storage = storage;
             _zagotovka = zagotovka;
         }
+
         [HttpGet]
         public List<StorageModel> GetStoragesList() => _storage.GetList()?.Select(rec => Convert(rec)).ToList();
         [HttpGet]
