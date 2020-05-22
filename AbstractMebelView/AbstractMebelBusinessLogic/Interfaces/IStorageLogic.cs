@@ -12,7 +12,7 @@ namespace AbstractMebelBusinessLogic.Interfaces
         StorageViewModel GetElement(int id);
         void AddElement(StorageBindingModel model);
         void UpdElement(StorageBindingModel model);
-        void DelElement(int id);
+        void DelElement(StorageBindingModel model);
         void FillStorage(StorageZagotovkaBindingModel model);
         void RemoveFromStorage(int mebelId, int mebelsCount);
     }

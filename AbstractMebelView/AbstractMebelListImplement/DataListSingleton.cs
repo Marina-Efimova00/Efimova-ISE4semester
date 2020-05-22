@@ -16,12 +16,14 @@ namespace AbstractMebelListImplement
         public List<MebelZagotovka> MebelZagotovkas { get; set; }
         public List<Storage> Storages { get; set; }
         public List<StorageZagotovka> StorageZagotovkas { get; set; }
+        public List<Client> Clients { get; set; }
         private DataListSingleton()
         {
             Zagotovkas = new List<Zagotovka>();
             Orders = new List<Order>();
             Mebels = new List<Mebel>();
             MebelZagotovkas = new List<MebelZagotovka>();
+            Clients = new List<Client>();
             Storages = new List<Storage>();
             StorageZagotovkas = new List<StorageZagotovka>();
         }

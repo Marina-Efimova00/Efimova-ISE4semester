@@ -61,24 +61,26 @@ namespace AbstractMebelListImplement.Implements
         public List<OrderViewModel> Read(OrderBindingModel model)
         {
             List<OrderViewModel> result = new List<OrderViewModel>();
-            foreach (var Order in source.Orders)
+            foreach (var order in source.Orders)
             {
                 if (model != null)
                 {
-                    if (Order.Id == model.Id || (model.DateFrom.HasValue && model.DateTo.HasValue && Order.DateCreate >= model.DateFrom && Order.DateCreate <= model.DateTo))
+                    if (order.Id == model.Id || (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo)
+                        || model.ClientId.HasValue && order.ClientId == model.ClientId)
                     {
-                        result.Add(CreateViewModel(Order));
+                        result.Add(CreateViewModel(order));
                         break;
                     }
                     continue;
                 }
-                result.Add(CreateViewModel(Order));
+                result.Add(CreateViewModel(order));
             }
             return result;
         }
         private Order CreateModel(OrderBindingModel model, Order Order)
         {
             Order.MebelId = model.MebelId == 0 ? Order.MebelId : model.MebelId;
+            Order.ClientId = (int)model.ClientId;
             Order.Count = model.Count;
             Order.Sum = model.Sum;
             Order.Status = model.Status;
@@ -101,6 +103,7 @@ namespace AbstractMebelListImplement.Implements
             {
                 Id = Order.Id,
                 MebelName = MebelName,
+                ClientId = Order.ClientId,
                 Count = Order.Count,
                 Sum = Order.Sum,
                 Status = Order.Status,

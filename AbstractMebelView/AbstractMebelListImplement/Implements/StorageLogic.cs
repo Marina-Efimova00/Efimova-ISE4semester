@@ -139,18 +139,18 @@ namespace AbstractMebelListImplement.Implements
             source.Storages[index].StorageName = model.StorageName;
 
         }
-        public void DelElement(int id)
+        public void DelElement(StorageBindingModel model)
         {
             for (int i = 0; i < source.StorageZagotovkas.Count; ++i)
             {
-                if (source.StorageZagotovkas[i].StorageId == id)
+                if (source.StorageZagotovkas[i].StorageId == model.Id)
                 {
                     source.StorageZagotovkas.RemoveAt(i--);
                 }
             }
             for (int i = 0; i < source.Storages.Count; ++i)
             {
-                if (source.Storages[i].Id == id)
+                if (source.Storages[i].Id == model.Id)
                 {
                     source.Storages.RemoveAt(i);
                     return;
