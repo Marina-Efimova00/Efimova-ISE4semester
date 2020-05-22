@@ -19,7 +19,7 @@ namespace AbstractMebelClientView
         {
             try
             {
-                var list = APIClient.GetRequest<List<MessageInfoViewModel>>($"api/client/getmessage?clientId={Program.Client.Id}");
+                var list = APIClient.GetRequest<List<MessageInfoViewModel>>($"api/client/getmessages?clientId={Program.Client.Id}");
 
                 if (list != null)
                 {
