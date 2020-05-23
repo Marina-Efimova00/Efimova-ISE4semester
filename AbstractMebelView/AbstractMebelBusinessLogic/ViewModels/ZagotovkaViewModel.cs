@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
+using AbstractMebelBusinessLogic.Attributes;
+using AbstractMebelBusinessLogic.Enums;
 
 namespace AbstractMebelBusinessLogic.ViewModels
 {
-    public class ZagotovkaViewModel
+    public class ZagotovkaViewModel : BaseViewModel
     {
-        public int Id { get; set; }
-        [DisplayName("Название заготовки")]
+        [Column(title: "Заготовка", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string ZagotovkaName { get; set; }
+        public override List<string> Properties() => new List<string>
+        {
+            "Id",
+            "ZagotovkaName"
+        };
     }
 }

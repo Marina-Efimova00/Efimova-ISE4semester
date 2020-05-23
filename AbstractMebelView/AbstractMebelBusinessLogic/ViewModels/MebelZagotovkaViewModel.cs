@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AbstractMebelBusinessLogic.Attributes;
+using AbstractMebelBusinessLogic.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
@@ -7,10 +9,8 @@ using System.Text;
 namespace AbstractMebelBusinessLogic.ViewModels
 {
     [DataContract]
-    public class MebelZagotovkaViewModel
+    public class MebelZagotovkaViewModel : BaseViewModel
     {
-        [DataMember]
-        public int Id { get; set; }
 
         [DataMember]
         public int MebelId { get; set; }
@@ -19,11 +19,22 @@ namespace AbstractMebelBusinessLogic.ViewModels
         public int ZagotovkaId { get; set; }
 
         [DataMember]
-        [DisplayName("Заготовка")]
+        [Column(title: "Заготовка", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string ZagotovkaName { get; set; }
-
+        [Column(title: "Количество", width: 100)]
         [DataMember]
-        [DisplayName("Количество")]
         public int Count { get; set; }
+        public override List<string> Properties() => new List<string>
+        {
+            "Id",
+            "ZagotovkaName",
+            "Count",
+            "ImplementerFIO",
+            "Count",
+            "Sum",
+            "Status",
+            "DateCreate",
+            "DateImplement"
+        };
     }
 }

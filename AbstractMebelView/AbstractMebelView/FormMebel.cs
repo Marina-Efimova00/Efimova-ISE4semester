@@ -60,14 +60,7 @@ namespace AbstractMebelView
         {
             try
             {
-                if (MebelZagotovkas != null)
-                {
-                    dataGridView.Rows.Clear();
-                    foreach (var bf in MebelZagotovkas)
-                    {
-                        dataGridView.Rows.Add(new object[] { bf.Key, bf.Value.Item1, bf.Value.Item2 });
-                    }
-                }
+                Program.ConfigGrid(logic.Read(null), dataGridView);
             }
             catch (Exception ex)
             {

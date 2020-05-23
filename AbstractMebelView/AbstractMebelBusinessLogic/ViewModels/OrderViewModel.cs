@@ -4,42 +4,56 @@ using System.Text;
 using System.ComponentModel;
 using AbstractMebelBusinessLogic.Enums;
 using System.Runtime.Serialization;
+using AbstractMebelBusinessLogic.Attributes;
 
 namespace AbstractMebelBusinessLogic.ViewModels
 {
     [DataContract]
-    public class OrderViewModel
+    public class OrderViewModel : BaseViewModel
     {
         [DataMember]
-        public int Id { get; set; }
-        [DataMember]
         public int ClientId { get; set; }
+
         [DataMember]
-        [DisplayName("Клиент")]
-        public string ClientFIO { get; set; }
+        public int MebelId { get; set; }
+
         [DataMember]
         public int? ImplementerId { get; set; }
+
+        [Column(title: "Клиент", width: 150)]
         [DataMember]
-        [DisplayName("Исполнитель")]
-        public string ImplementerFIO { get; set; }
-        public int MebelId { get; set; }
+        public string ClientFIO { get; set; }
+
+        [Column(title: "Мебель", gridViewAutoSize: GridViewAutoSize.Fill)]
         [DataMember]
-        [DisplayName("Мебель")]
         public string MebelName { get; set; }
+
+        [Column(title: "Исполнитель", width: 150)]
         [DataMember]
-        [DisplayName("Количество")]
+        public string ImplementerFIO { get; set; }
+
+        [Column(title: "Количество", width: 100)]
+        [DataMember]
         public int Count { get; set; }
+
+        [Column(title: "Сумма", width: 50)]
         [DataMember]
-        [DisplayName("Сумма")]
         public decimal Sum { get; set; }
+
+        [Column(title: "Статус", width: 100)]
         [DataMember]
-        [DisplayName("Статус")]
         public OrderStatus Status { get; set; }
+
+        [Column(title: "Дата создания", width: 100)]
         [DataMember]
-        [DisplayName("Дата создания")]
         public DateTime DateCreate { get; set; }
+
+        [Column(title: "Дата выполнения", width: 100)]
         [DataMember]
-        [DisplayName("Дата выполнения")]
         public DateTime? DateImplement { get; set; }
+
+        public override List<string> Properties() => new List<string> { "Id",
+"ClientFIO", "MebelName", "ImplementerFIO", "Count", "Sum", "Status", "DateCreate",
+"DateImplement" };
     }
 }
