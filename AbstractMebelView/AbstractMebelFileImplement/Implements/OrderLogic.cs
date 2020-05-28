@@ -73,8 +73,6 @@ namespace AbstractMebelFileImplement.Implements
                 ImplementerId = rec.ImplementerId,
                 ImplementerFIO = source.Implementers.FirstOrDefault(recC => recC.Id == rec.ImplementerId)?.ImplementerFIO,
                 MebelName = GetMebelName(rec.MebelId),
-                ClientId = rec.ClientId,
-                ClientFIO = source.Clients.FirstOrDefault(recC => recC.Id == rec.ClientId)?.ClientFIO,
                 Count = rec.Count,
                 Sum = rec.Sum,
                 Status = rec.Status,
