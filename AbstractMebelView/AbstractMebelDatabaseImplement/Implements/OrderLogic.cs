@@ -1,4 +1,5 @@
 ﻿using AbstractMebelBusinessLogic.BindingModels;
+using AbstractMebelBusinessLogic.Enums;
 using AbstractMebelBusinessLogic.Interfaces;
 using AbstractMebelBusinessLogic.ViewModels;
 using AbstractMebelDatabaseImplement.Models;
@@ -32,12 +33,13 @@ namespace AbstractMebelDatabaseImplement.Implements
                     context.Orders.Add(element);
                 }
                 element.MebelId = model.MebelId == 0 ? element.MebelId : model.MebelId;
-                element.ClientId = model.ClientId == null ? element.ClientId : (int)model.ClientId;
                 element.Count = model.Count;
-                element.Sum = model.Sum;
-                element.Status = model.Status;
                 element.DateCreate = model.DateCreate;
                 element.DateImplement = model.DateImplement;
+                element.ClientId = model.ClientId.Value;
+                element.ImplementerId = model.ImplementerId;
+                element.Status = model.Status;
+                element.Sum = model.Sum;
                 context.SaveChanges();
             }
         }
@@ -61,24 +63,30 @@ namespace AbstractMebelDatabaseImplement.Implements
         {
             using (var context = new AbstractMebelDatabase())
             {
-                return context.Orders.Where(rec => model == null || (rec.Id == model.Id && model.Id.HasValue)
-                 || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo) ||
-                 (model.ClientId.HasValue && rec.ClientId == model.ClientId))
-                    .Include(rec => rec.Mebel)
-                .Include(rec => rec.Client)
-                 .Select(rec => new OrderViewModel
-                {
+                return context.Orders
+               .Where(
+                   rec => model == null
+                   || rec.Id == model.Id && model.Id.HasValue
+                   || model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo
+                   || model.ClientId.HasValue && rec.ClientId == model.ClientId
+                   || model.FreeOrders.HasValue && model.FreeOrders.Value && !rec.ImplementerId.HasValue
+                   || model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Выполняется
+               )
+               .Select(rec => new OrderViewModel
+               {
                     Id = rec.Id,
                     ClientId = rec.ClientId,
                     MebelId = rec.MebelId,
+                    ImplementerId = rec.ImplementerId,
                     DateCreate = rec.DateCreate,
                     DateImplement = rec.DateImplement,
                     Status = rec.Status,
                     Count = rec.Count,
                     Sum = rec.Sum,
                     MebelName = rec.Mebel.MebelName,
-                    ClientFIO = rec.Client.ClientFIO
-                 })
+                    ClientFIO = rec.Client.ClientFIO,
+                    ImplementerFIO = rec.ImplementerId.HasValue ? rec.Implementer.ImplementerFIO : string.Empty
+               })
                 .ToList();
             }
         }

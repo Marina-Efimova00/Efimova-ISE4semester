@@ -15,6 +15,7 @@ namespace AbstractMebelListImplement
         public List<Mebel> Mebels { get; set; }
         public List<MebelZagotovka> MebelZagotovkas { get; set; }
         public List<Client> Clients { get; set; }
+        public List<Implementer> Implementers { get; set; }
         private DataListSingleton()
         {
             Zagotovkas = new List<Zagotovka>();
@@ -22,6 +23,7 @@ namespace AbstractMebelListImplement
             Mebels = new List<Mebel>();
             MebelZagotovkas = new List<MebelZagotovka>();
             Clients = new List<Client>();
+            Implementers = new List<Implementer>();
         }
         public static DataListSingleton GetInstance()
         {
