@@ -24,7 +24,7 @@ namespace AbstractMebelBusinessLogic.ViewModels
         [DataMember]
         public string ClientFIO { get; set; }
 
-        [Column(title: "Мебель", gridViewAutoSize: GridViewAutoSize.Fill)]
+        [Column(title: "Мебель", width: 150)]
         [DataMember]
         public string MebelName { get; set; }
 
