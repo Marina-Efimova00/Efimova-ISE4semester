@@ -150,6 +150,47 @@ namespace AbstractMebelDatabaseImplement.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("AbstractMebelDatabaseImplement.Models.Storage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("StorageName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Storages");
+                });
+
+            modelBuilder.Entity("AbstractMebelDatabaseImplement.Models.StorageZagotovka", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StorageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ZagotovkaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StorageId");
+
+                    b.HasIndex("ZagotovkaId");
+
+                    b.ToTable("StorageZagotovkas");
+                });
+
             modelBuilder.Entity("AbstractMebelDatabaseImplement.Models.Zagotovka", b =>
                 {
                     b.Property<int>("Id")
@@ -196,6 +237,21 @@ namespace AbstractMebelDatabaseImplement.Migrations
                     b.HasOne("AbstractMebelDatabaseImplement.Models.Mebel", "Mebel")
                         .WithMany("Orders")
                         .HasForeignKey("MebelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AbstractMebelDatabaseImplement.Models.StorageZagotovka", b =>
+                {
+                    b.HasOne("AbstractMebelDatabaseImplement.Models.Storage", "Storage")
+                        .WithMany("StorageZagotovkas")
+                        .HasForeignKey("StorageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AbstractMebelDatabaseImplement.Models.Zagotovka", "Zagotovka")
+                        .WithMany("StorageZagotovkas")
+                        .HasForeignKey("ZagotovkaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

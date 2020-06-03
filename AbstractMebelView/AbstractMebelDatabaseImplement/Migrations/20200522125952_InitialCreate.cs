@@ -8,6 +8,21 @@ namespace AbstractMebelDatabaseImplement.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Clients",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientFIO = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clients", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Mebels",
                 columns: table => new
                 {
@@ -19,6 +34,19 @@ namespace AbstractMebelDatabaseImplement.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Mebels", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Storages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StorageName = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Storages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -40,6 +68,7 @@ namespace AbstractMebelDatabaseImplement.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientId = table.Column<int>(nullable: false),
                     MebelId = table.Column<int>(nullable: false),
                     Count = table.Column<int>(nullable: false),
                     Sum = table.Column<decimal>(nullable: false),
@@ -50,6 +79,12 @@ namespace AbstractMebelDatabaseImplement.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Orders_Mebels_MebelId",
                         column: x => x.MebelId,
@@ -85,11 +120,37 @@ namespace AbstractMebelDatabaseImplement.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "StorageZagotovkas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StorageId = table.Column<int>(nullable: false),
+                    ZagotovkaId = table.Column<int>(nullable: false),
+                    Count = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StorageZagotovkas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StorageZagotovkas_Storages_StorageId",
+                        column: x => x.StorageId,
+                        principalTable: "Storages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StorageZagotovkas_Zagotovkas_ZagotovkaId",
+                        column: x => x.ZagotovkaId,
+                        principalTable: "Zagotovkas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_MebelZagotovkas_MebelId",
                 table: "MebelZagotovkas",
-                column: "MebelId",
-                unique: true);
+                column: "MebelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MebelZagotovkas_ZagotovkaId",
@@ -97,9 +158,24 @@ namespace AbstractMebelDatabaseImplement.Migrations
                 column: "ZagotovkaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_ClientId",
+                table: "Orders",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_MebelId",
                 table: "Orders",
                 column: "MebelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StorageZagotovkas_StorageId",
+                table: "StorageZagotovkas",
+                column: "StorageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StorageZagotovkas_ZagotovkaId",
+                table: "StorageZagotovkas",
+                column: "ZagotovkaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -111,10 +187,19 @@ namespace AbstractMebelDatabaseImplement.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Zagotovkas");
+                name: "StorageZagotovkas");
+
+            migrationBuilder.DropTable(
+                name: "Clients");
 
             migrationBuilder.DropTable(
                 name: "Mebels");
+
+            migrationBuilder.DropTable(
+                name: "Storages");
+
+            migrationBuilder.DropTable(
+                name: "Zagotovkas");
         }
     }
 }

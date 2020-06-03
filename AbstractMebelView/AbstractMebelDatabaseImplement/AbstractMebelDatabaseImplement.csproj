@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AbstractMebelListImplement\AbstractMebelListImplement.csproj" />
+    <ProjectReference Include="..\AbstractMebelBusinessLogic\AbstractMebelBusinessLogic.csproj" />
   </ItemGroup>
 
 </Project>

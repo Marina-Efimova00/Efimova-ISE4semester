@@ -81,7 +81,6 @@ namespace AbstractMebelFileImplement.Implements
             })
             .ToList();
         }
-
         private string GetMebelName(int id)
         {
             string name = "";

@@ -11,10 +11,11 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
     public class MainLogic
     {
         private readonly IOrderLogic orderLogic;
-        private readonly object locker = new object();
-        public MainLogic(IOrderLogic orderLogic)
+        private readonly IStorageLogic storageLogic;
+        public MainLogic(IOrderLogic orderLogic, IStorageLogic storageLogic)
         {
             this.orderLogic = orderLogic;
+            this.storageLogic = storageLogic;
         }
         public void CreateOrder(CreateOrderBindingModel model)
         {
@@ -30,36 +31,36 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
         }
         public void TakeOrderInWork(ChangeStatusBindingModel model)
         {
-            lock (locker)
+            var order = orderLogic.Read(new OrderBindingModel
             {
-                var order = orderLogic.Read(new OrderBindingModel
-                {
-                    Id = model.OrderId
-                })?[0];
-                if (order == null)
-                {
-                    throw new Exception("Не найден заказ");
-                }
-                if (order.Status != OrderStatus.Принят)
-                {
-                    throw new Exception("Заказ не в статусе \"Принят\"");
-                }
-                if (order.ImplementerId.HasValue)
-                {
-                    throw new Exception("У заказа уже есть исполнитель");
-                }
+                Id = model.OrderId })?[0];
+            if (order == null)
+            {
+                throw new Exception("Не найден заказ");
+            }
+            if (order.Status != OrderStatus.Принят)
+            {
+                throw new Exception("Заказ не в статусе \"Принят\"");
+            }
+            Console.WriteLine($"Take order with id {order.Id} and mebel id {order.MebelId}");
+            try
+            {
+                storageLogic.RemoveFromStorage(order.MebelId, order.Count);
                 orderLogic.CreateOrUpdate(new OrderBindingModel
                 {
                     Id = order.Id,
-                    ClientId = order.ClientId,
-                    ImplementerId = model.ImplementerId,
                     MebelId = order.MebelId,
+                    ClientId = order.ClientId,
                     Count = order.Count,
                     Sum = order.Sum,
                     DateCreate = order.DateCreate,
                     DateImplement = DateTime.Now,
                     Status = OrderStatus.Выполняется
                 });
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
         public void FinishOrder(ChangeStatusBindingModel model)
@@ -113,6 +114,10 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Оплачен
             });
+        }
+        public void FillStorage(StorageZagotovkaBindingModel model)
+        {
+            storageLogic.FillStorage(model);
         }
     }
 }
