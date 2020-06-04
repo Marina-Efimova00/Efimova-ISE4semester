@@ -49,7 +49,7 @@ namespace AbstractMebelListImplement.Implements
             int? clientId = null;
             foreach (var client in source.Clients)
             {
-                if (model.ClientId.HasValue && model.ClientId == client.Id)
+                if (client.Email == model.FromMailAddress)
                 {
                     clientId = model.ClientId;
                     break;
