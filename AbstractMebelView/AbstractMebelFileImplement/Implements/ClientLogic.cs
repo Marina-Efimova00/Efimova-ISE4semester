@@ -22,7 +22,9 @@ namespace AbstractMebelFileImplement.Implements
 
             if (element != null)
             {
+
                 throw new Exception("Уже есть заготовка с таким названием");
+
             }
 
             if (model.Id.HasValue)

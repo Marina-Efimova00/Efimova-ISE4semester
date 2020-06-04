@@ -9,13 +9,14 @@ namespace AbstractMebelDatabaseImplement.Models
     public class Mebel
     {
         public int Id { get; set; }
-
         [Required]
         public string MebelName { get; set; }
-
         [Required]
         public decimal Price { get; set; }
+        [ForeignKey("MebelId")]
         public virtual List<MebelZagotovka> MebelZagotovkas { get; set; }
+
+        [ForeignKey("MebelId")]
         public virtual List<Order> Orders { get; set; }
     }
 }

@@ -18,15 +18,21 @@ namespace AbstractMebelFileImplement
         private readonly string MebelFileName = "Mebel.xml";
         private readonly string MebelZagotovkaFileName = "MebelZagotovka.xml";
         private readonly string ClientFileName = "Client.xml";
+
         private readonly string ImplementerFileName = "Implementer.xml";
+
         private readonly string MessageInfoFileName = "MessangeInfo.xml";
+
         public List<Zagotovka> Zagotovkas { get; set; }
         public List<Order> Orders { get; set; }
         public List<Mebel> Mebels { get; set; }
         public List<MebelZagotovka> MebelZagotovkas { get; set; }
         public List<Client> Clients { get; set; }
+
         public List<Implementer> Implementers { get; set; }
+
         public List<MessageInfo> MessageInfoes { get; set; }
+
 
         private FileDataListSingleton()
         {
@@ -35,8 +41,11 @@ namespace AbstractMebelFileImplement
             Mebels = LoadMebels();
             MebelZagotovkas = LoadMebelZagotovkas();
             Clients = LoadClients();
+
             Implementers = LoadImplementers();
+
             MessageInfoes = LoadMessageInfoes();
+
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -54,7 +63,9 @@ namespace AbstractMebelFileImplement
             SaveMebelZagotovkas();
             SaveClients();
             SaveImplementers();
+
             SaveMessageInfoes();
+
         }
         private List<Zagotovka> LoadZagotovkas()
         {
@@ -160,6 +171,7 @@ namespace AbstractMebelFileImplement
             }
             return list;
         }
+
         private List<Implementer> LoadImplementers()
         {
             var list = new List<Implementer>();
@@ -295,6 +307,7 @@ namespace AbstractMebelFileImplement
                 xDocument.Save(ClientFileName);
             }
         }
+
         private void SaveImplementers()
         {
             if (Implementers != null)

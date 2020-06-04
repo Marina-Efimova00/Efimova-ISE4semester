@@ -70,6 +70,7 @@ namespace AbstractMebelListImplement.Implements
                     || model.ImplementerId.HasValue && order.ImplementerId == model.ImplementerId && order.Status == OrderStatus.Выполняется)
                 {
                     result.Add(CreateViewModel(order));
+
                         break;
                 }
                 result.Add(CreateViewModel(order));
