@@ -231,7 +231,7 @@ namespace AbstractMebelDatabaseImplement.Migrations
                         .IsRequired();
 
                     b.HasOne("AbstractMebelDatabaseImplement.Models.Implementer", "Implementer")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("ImplementerId");
 
                     b.HasOne("AbstractMebelDatabaseImplement.Models.Mebel", "Mebel")

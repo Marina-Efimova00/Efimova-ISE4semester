@@ -46,7 +46,6 @@
             this.списокЗаготовокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.заготовкиПоСкладамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокСкладовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.клиентыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.запускРаботыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.исполнителиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -72,7 +71,7 @@
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.справочникиToolStripMenuItem,
             this.отчетыToolStripMenuItem,
-            this.запускРаботыToolStripMenuItem});
+            this.запускРаботыToolStripMenuItem,
             this.пополнитьСкладыToolStripMenuItem,
             this.отчетыToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
@@ -87,8 +86,7 @@
             this.заготовкаToolStripMenuItem,
             this.мебельToolStripMenuItem,
             this.клиентыToolStripMenuItem,
-            this.исполнителиToolStripMenuItem});
-            this.клиентыToolStripMenuItem,
+            this.исполнителиToolStripMenuItem,
             this.складToolStripMenuItem});
             this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
             this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(117, 24);
