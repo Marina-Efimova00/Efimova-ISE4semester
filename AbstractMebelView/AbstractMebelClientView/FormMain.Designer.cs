@@ -27,13 +27,11 @@
         private void InitializeComponent()
         {
             this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.UpdateDataToolStripMenuItem = new
-           System.Windows.Forms.ToolStripMenuItem();
-            this.CreateOrderToolStripMenuItem = new
-           System.Windows.Forms.ToolStripMenuItem();
+            this.UpdateDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.RefreshOrderListToolStripMenuItem = new
-           System.Windows.Forms.ToolStripMenuItem();
+            this.RefreshOrderListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MessageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -41,14 +39,15 @@
             // menuStrip
             //
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
- this.UpdateDataToolStripMenuItem,
- this.CreateOrderToolStripMenuItem,
- this.RefreshOrderListToolStripMenuItem});
+            this.UpdateDataToolStripMenuItem,
+            this.CreateOrderToolStripMenuItem,
+            this.RefreshOrderListToolStripMenuItem,
+            this.MessageToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(621, 24);
             this.menuStrip.TabIndex = 0;
-            this.menuStrip.Text = "menuStrip1";
+            this.menuStrip.Text = "menuStrip";
             //
             // UpdateDataToolStripMenuItem
             //
@@ -56,7 +55,7 @@
             this.UpdateDataToolStripMenuItem.Size = new System.Drawing.Size(117, 20);
             this.UpdateDataToolStripMenuItem.Text = "Изменить данные";
             this.UpdateDataToolStripMenuItem.Click += new
-           System.EventHandler(this.UpdateDataToolStripMenuItem_Click);
+            System.EventHandler(this.UpdateDataToolStripMenuItem_Click);
             //
             // CreateOrderToolStripMenuItem
             //
@@ -75,6 +74,13 @@
             this.RefreshOrderListToolStripMenuItem.Text = "Обновить список заказов";
             this.RefreshOrderListToolStripMenuItem.Click += new
            System.EventHandler(this.RefreshOrderListToolStripMenuItem_Click);
+            // 
+            // MessageToolStripMenuItem
+            // 
+            this.MessageToolStripMenuItem.Name = "MessageToolStripMenuItem";
+            this.MessageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.MessageToolStripMenuItem.Text = "Сообщения";
+            this.MessageToolStripMenuItem.Click += new System.EventHandler(this.MessageToolStripMenuItem_Click);
             //
             // dataGridView
             //
@@ -111,6 +117,6 @@
         private System.Windows.Forms.ToolStripMenuItem CreateOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RefreshOrderListToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView;
-
+        private System.Windows.Forms.ToolStripMenuItem MessageToolStripMenuItem;
     }
 }

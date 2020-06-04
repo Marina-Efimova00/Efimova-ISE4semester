@@ -141,5 +141,10 @@ namespace AbstractMebelView
             work.DoWork();
             LoadData();
         }
+        private void сообщенияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormMessage>();
+            form.ShowDialog();
+        }
     }
 }
