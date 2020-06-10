@@ -65,7 +65,7 @@ namespace AbstractMebelFileImplement.Implements
             || (model.ClientId.HasValue && rec.ClientId == model.ClientId)
             || model.FreeOrders.HasValue && model.FreeOrders.Value && !rec.ImplementerId.HasValue
             || model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Выполняется
-            || model.NotEnoughMaterialsOrders.HasValue && model.NotEnoughMaterialsOrders.Value && rec.Status == OrderStatus.Треубются_материалы)
+            || model.NotEnoughMaterialsOrders.HasValue && model.NotEnoughMaterialsOrders.Value && rec.Status == OrderStatus.Требуются_материалы)
              .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,

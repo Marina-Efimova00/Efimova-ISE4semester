@@ -62,7 +62,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                 Thread.Sleep(implementer.PauseTime);
             }
             var notEnoughMaterialsOrders = orders
-                .Where(x => x.Status == OrderStatus.Треубются_материалы)
+                .Where(x => x.Status == OrderStatus.Требуются_материалы)
                 .Select(x => x)
                 .ToList();
             orders.RemoveAll(x => notEnoughMaterialsOrders.Contains(x));
@@ -89,7 +89,7 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                     Boolean isNotEnoughMaterials = orderLogic.Read(new OrderBindingModel
                     {
                         Id = order.Id
-                    }).FirstOrDefault().Status == OrderStatus.Треубются_материалы;
+                    }).FirstOrDefault().Status == OrderStatus.Требуются_материалы;
                     if (isNotEnoughMaterials)
                     {
                         continue;

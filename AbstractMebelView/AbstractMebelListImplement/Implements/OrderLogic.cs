@@ -68,7 +68,7 @@ namespace AbstractMebelListImplement.Implements
                         || model.ClientId.HasValue && order.ClientId == model.ClientId
                         || model.FreeOrders.HasValue && model.FreeOrders.Value
                     || model.ImplementerId.HasValue && order.ImplementerId == model.ImplementerId && order.Status == OrderStatus.Выполняется
-                    || model.NotEnoughMaterialsOrders.HasValue && model.NotEnoughMaterialsOrders.Value && order.Status == OrderStatus.Треубются_материалы)
+                    || model.NotEnoughMaterialsOrders.HasValue && model.NotEnoughMaterialsOrders.Value && order.Status == OrderStatus.Требуются_материалы)
                 {
                     result.Add(CreateViewModel(order));
 

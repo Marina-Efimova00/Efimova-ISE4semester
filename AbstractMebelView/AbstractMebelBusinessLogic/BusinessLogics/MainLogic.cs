@@ -42,15 +42,12 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                 {
                     throw new Exception("Не найден заказ");
                 }
-                if (order.Status != OrderStatus.Принят && order.Status != OrderStatus.Треубются_материалы)
+                if (order.Status != OrderStatus.Принят && order.Status != OrderStatus.Требуются_материалы)
                 {
                     throw new Exception("Заказ не в статусе \"Принят\"или \"Требуются материалы\"");
                 }
-                Console.WriteLine($"Take order with id {order.Id} and mebel id {order.MebelId}");
-                try
-                {
-                    storageLogic.RemoveFromStorage(order.MebelId, order.Count);
-                    orderLogic.CreateOrUpdate(new OrderBindingModel
+                
+                    var orderModel = new OrderBindingModel
                     {
                         Id = order.Id,
                         MebelId = order.MebelId,
@@ -59,13 +56,19 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                         Sum = order.Sum,
                         DateCreate = order.DateCreate,
                         DateImplement = DateTime.Now,
-                        Status = OrderStatus.Выполняется
-                    });
-                }
-                catch (Exception)
+                    };
+                try
                 {
-                    throw;
+                    storageLogic.RemoveFromStorage(order.MebelId, order.Count);
+                    orderModel.DateImplement = DateTime.Now;
+                    orderModel.Status = OrderStatus.Выполняется;
+                    orderModel.ImplementerId = model.ImplementerId;
                 }
+                catch
+                {
+                    orderModel.Status = OrderStatus.Требуются_материалы;
+                }
+                orderLogic.CreateOrUpdate(orderModel);
             }
         }
         public void FinishOrder(ChangeStatusBindingModel model)
