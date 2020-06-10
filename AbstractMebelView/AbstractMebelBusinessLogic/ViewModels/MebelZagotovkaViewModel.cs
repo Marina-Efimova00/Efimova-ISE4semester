@@ -29,12 +29,6 @@ namespace AbstractMebelBusinessLogic.ViewModels
             "Id",
             "ZagotovkaName",
             "Count",
-            "ImplementerFIO",
-            "Count",
-            "Sum",
-            "Status",
-            "DateCreate",
-            "DateImplement"
         };
     }
 }
