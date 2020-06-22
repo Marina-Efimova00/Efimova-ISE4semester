@@ -46,8 +46,12 @@ namespace AbstractMebelBusinessLogic.BusinessLogics
                 {
                     throw new Exception("Заказ не в статусе \"Принят\"или \"Требуются материалы\"");
                 }
-                
-                    var orderModel = new OrderBindingModel
+                if (order.ImplementerId.HasValue)
+                {
+                    throw new Exception("У заказа уже есть исполнитель");
+                }
+
+                var orderModel = new OrderBindingModel
                     {
                         Id = order.Id,
                         MebelId = order.MebelId,
