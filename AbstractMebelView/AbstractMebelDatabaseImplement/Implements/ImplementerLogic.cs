@@ -15,9 +15,20 @@ namespace AbstractMebelDatabaseImplement.Implements
         {
             using (var context = new AbstractMebelDatabase())
             {
-                Implementer element = context.Implementers.FirstOrDefault(rec => rec.Id == model.Id);
-
-                if (element == null)
+                Implementer element = context.Implementers.FirstOrDefault(rec => rec.Id == model.Id && rec.ImplementerFIO == model.ImplementerFIO);
+                if (element != null)
+                {
+                    throw new Exception("Такой исполнитель уже существует");
+                }
+                if (model.Id.HasValue)
+                {
+                    element = context.Implementers.FirstOrDefault(rec => rec.Id == model.Id);
+                    if (element == null)
+                    {
+                        throw new Exception("Элемент не найден");
+                    }
+                }
+                else
                 {
                     element = new Implementer();
                     context.Implementers.Add(element);

@@ -64,13 +64,17 @@ namespace AbstractMebelListImplement.Implements
             List<OrderViewModel> result = new List<OrderViewModel>();
             foreach (var order in source.Orders)
             {
-                if (order.Id == model.Id || (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo)
-                        || model.ClientId.HasValue && order.ClientId == model.ClientId
-                        || model.FreeOrders.HasValue && model.FreeOrders.Value
-                    || model.ImplementerId.HasValue && order.ImplementerId == model.ImplementerId && order.Status == OrderStatus.Выполняется)
+                if (model != null)
                 {
-                    result.Add(CreateViewModel(order));
+                    if (order.Id == model.Id || (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo)
+                    || (model.ClientId.HasValue && order.ClientId == model.ClientId)
+                    || (model.FreeOrders.HasValue && model.FreeOrders.Value)
+                    || (model.ImplementerId.HasValue && order.ImplementerId == model.ImplementerId && order.Status == OrderStatus.Выполняется))
+                    {
+                        result.Add(CreateViewModel(order));
                         break;
+                    }
+                    continue;
                 }
                 result.Add(CreateViewModel(order));
             }
@@ -99,11 +103,38 @@ namespace AbstractMebelListImplement.Implements
                     break;
                 }
             }
+            string ClientFIO = "";
+
+            for (int i = 0; i < source.Clients.Count; i++)
+            {
+                if (source.Clients[i].Id == Order.ClientId)
+                {
+                    ClientFIO = source.Clients[i].ClientFIO;
+                    break;
+                }
+            }
+
+            string ImplementerFIO = "";
+            if (Order.ImplementerId.HasValue)
+            {
+                for (int i = 0; i < source.Implementers.Count; i++)
+                {
+                    if (source.Implementers[i].Id == Order.ImplementerId)
+                    {
+                        ImplementerFIO = source.Implementers[i].ImplementerFIO;
+                        break;
+                    }
+                }
+            }
+
             return new OrderViewModel
             {
                 Id = Order.Id,
                 MebelName = MebelName,
                 ClientId = Order.ClientId,
+                ClientFIO = ClientFIO,
+                ImplementerId = Order.ImplementerId,
+                ImplementerFIO = ImplementerFIO,
                 Count = Order.Count,
                 Sum = Order.Sum,
                 Status = Order.Status,

@@ -87,6 +87,8 @@ namespace AbstractMebelFileImplement
                     {
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
                         MebelId = Convert.ToInt32(elem.Element("MebelId").Value),
+                        ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
+                        ImplementerId = Convert.ToInt32(elem.Attribute("ImplementerId").Value),
                         Count = Convert.ToInt32(elem.Element("Count").Value),
                         Sum = Convert.ToDecimal(elem.Element("Sum").Value),
                         Status = (OrderStatus)Enum.Parse(typeof(OrderStatus),
@@ -233,6 +235,8 @@ namespace AbstractMebelFileImplement
                     xElement.Add(new XElement("Order",
                     new XAttribute("Id", order.Id),
                     new XElement("MebelId", order.MebelId),
+                    new XElement("ClientId", order.ClientId),
+                    new XElement("ImplementerId", order.ImplementerId),
                     new XElement("Count", order.Count),
                     new XElement("Sum", order.Sum),
                     new XElement("Status", order.Status),
