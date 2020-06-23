@@ -20,7 +20,11 @@ namespace AbstractMebelClientView
         {
             try
             {
-                Program.ConfigGrid(APIClient.GetRequest<List<OrderViewModel>>($"api/main/getorders?clientId={Program.Client.Id}"), dataGridView);
+                dataGridView.DataSource = APIClient.GetRequest<List<OrderViewModel>>($"api/main/getorders?clientId={Program.Client.Id}");
+                dataGridView.Columns[0].Visible = false;
+                dataGridView.Columns[1].Visible = false;
+                dataGridView.Columns[2].Visible = false;
+                dataGridView.Columns[11].Visible = false;
             }
             catch (Exception ex)
             {
