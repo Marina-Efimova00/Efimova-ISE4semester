@@ -31,7 +31,8 @@ namespace AbstractMebelView
             {
                 textBoxCount.Text = value.ToString();
             }
-        }
+        }
+
         public FormMebelZagotovka(IZagotovkaLogic logic)
         {
             InitializeComponent();
@@ -42,7 +43,8 @@ namespace AbstractMebelView
                 comboBoxZagotovka.ValueMember = "Id";
                 comboBoxZagotovka.DataSource = list;
                 comboBoxZagotovka.SelectedItem = null;
-            }
+            }
+
         }
         private void buttonSave_Click(object sender, EventArgs e)
         {
