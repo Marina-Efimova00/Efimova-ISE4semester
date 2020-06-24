@@ -71,7 +71,7 @@ namespace AbstractMebelFileImplement.Implements
                 ClientFIO = source.Clients.FirstOrDefault(recC => recC.Id == rec.ClientId)?.ClientFIO,
                 ImplementerId = rec.ImplementerId,
                 ImplementerFIO = source.Implementers.FirstOrDefault(recC => recC.Id == rec.ImplementerId)?.ImplementerFIO,
-                MebelName = source.Mebels.FirstOrDefault(car => car.Id == rec.MebelId)?.MebelName,
+                MebelName = source.Mebels.FirstOrDefault(recC => recC.Id == rec.MebelId)?.MebelName,
                 Count = rec.Count,
                 Sum = rec.Sum,
                 Status = rec.Status,
